@@ -1,4 +1,4 @@
-package com.northeastern.edu;
+package com.northeastern.edu.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
