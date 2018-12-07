@@ -16,6 +16,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private Role role;
 
     @Temporal(TemporalType.DATE)
     private Date dob;
@@ -101,5 +102,13 @@ public class User {
         if (review.getUser() != this) {
             review.setUser(this);
         }
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
