@@ -15,7 +15,6 @@ public class CriticReview extends Review{
         this.downVotes = downVotes;
     }
 
-
     public long getUpVotes() {
         return upVotes;
     }
