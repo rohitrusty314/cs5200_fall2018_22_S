@@ -82,16 +82,12 @@ public class Watchlist {
 
     public void setResident(Resident resident) {
         this.resident = resident;
-        if(!resident.getWatchlists().contains(this)) {
-            resident.getWatchlists().add(this);
-        }
+        resident.getWatchlists().add(this);
     }
 
     public void addMovieToWatchList(Movie movie) {
         this.movies.add(movie);
-        if(!movie.getWatchlists().contains(this)) {
-            movie.getWatchlists().add(this);
-        }
+        movie.getWatchlists().add(this);
     }
 
     public Set<Movie> getMovies() {

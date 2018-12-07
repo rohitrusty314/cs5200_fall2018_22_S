@@ -14,6 +14,9 @@ public class Review {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private Movie movie;
+
     @Temporal(TemporalType.DATE)
     private Date created;
 
@@ -68,7 +71,16 @@ public class Review {
 
     public void setUser(User user) {
         this.user = user;
-        if (!user.getReviews().contains(this)) {
+        user.getReviews().add(this);
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+        if (!movie.getReviews().contains(this)) {
             user.getReviews().add(this);
         }
     }

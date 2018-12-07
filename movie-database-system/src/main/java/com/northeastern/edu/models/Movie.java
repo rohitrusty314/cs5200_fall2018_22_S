@@ -28,6 +28,16 @@ public class Movie{
                     "watchlist_id", referencedColumnName="id"))
     private Set<Watchlist> watchlists;
 
+    @ManyToMany(mappedBy="movies")
+    private Set<Cast> casts;
+
+
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    private Set<Review> reviews = new HashSet<>();
+
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    private Set<CriticRating> criticRatings = new HashSet<>();
+
 
     public Movie () {
 
@@ -50,9 +60,7 @@ public class Movie{
 
     public void linkWatchlistToMovie(Watchlist watchlist) {
         this.watchlists.add(watchlist);
-        if(!watchlist.getMovies().contains(this)) {
-            watchlist.getMovies().add(this);
-        }
+        watchlist.getMovies().add(this);
     }
 
     public int getId() {
@@ -93,5 +101,36 @@ public class Movie{
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public Set<Cast> getCasts() {
+        return casts;
+    }
+
+    public void addCastToMovie(Cast cast) {
+        this.casts.add(cast);
+        cast.getMovies().add(this);
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReview(Review review) {
+        this.reviews.add(review);
+        if(review.getMovie() != this) {
+            review.setMovie(this);
+        }
+    }
+
+    public Set<CriticRating> getCriticRatings() {
+        return criticRatings;
+    }
+
+    public void setCriticRating(CriticRating criticRating) {
+        this.criticRatings.add(criticRating);
+        if(criticRating.getMovie() != this) {
+            criticRating.setMovie(this);
+        }
     }
 }

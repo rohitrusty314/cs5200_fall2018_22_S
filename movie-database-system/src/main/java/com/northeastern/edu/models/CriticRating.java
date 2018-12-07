@@ -20,6 +20,9 @@ public class CriticRating{
     @ManyToOne
     private Critic critic;
 
+    @ManyToOne
+    private Movie movie;
+
     public CriticRating(long rating, Date created, Date lastUpdated) {
 
         this.rating = rating;
@@ -65,8 +68,15 @@ public class CriticRating{
 
     public void setCritic(Critic critic) {
         this.critic = critic;
-        if (!critic.getCriticRatings().contains(this)) {
-            critic.getCriticRatings().add(this);
-        }
+        critic.getCriticRatings().add(this);
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+        movie.getCriticRatings().add(this);
     }
 }
