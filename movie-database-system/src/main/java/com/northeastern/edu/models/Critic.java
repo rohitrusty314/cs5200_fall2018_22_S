@@ -13,8 +13,23 @@ import java.util.Set;
 @Entity
 public class Critic extends User{
 
+
     @OneToMany(mappedBy = "critic", fetch = FetchType.EAGER)
     private Set<CriticRating> criticRatings = new HashSet<>();
+
+    public Critic() {
+
+    }
+
+    public Critic(String username, String password, String firstName, String lastName, String email, Date dob) {
+        super(username, password, firstName, lastName, email, dob);
+    }
+
+    public Critic(String username, String password, String firstName, String lastName, String email, Date dob,
+                    Set<CriticRating> criticRatings) {
+        super(username, password, firstName, lastName, email, dob);
+        this.criticRatings = criticRatings;
+    }
 
     public Set<CriticRating> getCriticRatings() {
         return criticRatings;

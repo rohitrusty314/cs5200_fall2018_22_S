@@ -12,6 +12,22 @@ public class Resident extends User{
     @OneToMany(mappedBy = "resident", fetch = FetchType.EAGER)
     private Set<Watchlist> watchlists = new HashSet<>();
 
+
+    public Resident() {
+
+    }
+
+    public Resident(String username, String password, String firstName, String lastName, String email, Date dob) {
+        super(username, password, firstName, lastName, email, dob);
+    }
+
+
+    public Resident(String username, String password, String firstName, String lastName, String email, Date dob,
+                    Set<Watchlist> watchlists) {
+        super(username, password, firstName, lastName, email, dob);
+        this.watchlists = watchlists;
+    }
+
     public Set<Watchlist> getWatchlists() {
         return watchlists;
     }
