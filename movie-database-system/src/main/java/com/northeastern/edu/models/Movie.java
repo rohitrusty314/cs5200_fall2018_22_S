@@ -20,13 +20,8 @@ public class Movie{
 
     private String language;
 
-    @ManyToMany
-    @JoinTable(name="movie_watchlist",
-            joinColumns=@JoinColumn(name="movie_id",
-                    referencedColumnName="id"),
-            inverseJoinColumns=@JoinColumn(name=
-                    "watchlist_id", referencedColumnName="id"))
-    private Set<Watchlist> watchlists;
+    @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    private Set<MovieWatchlist> movieWatchlists = new HashSet<>();
 
     @ManyToMany(mappedBy="movies")
     private Set<Cast> casts;
@@ -53,15 +48,6 @@ public class Movie{
 
     }
 
-    public Set<Watchlist> getWatchlists() {
-        return watchlists;
-    }
-
-
-    public void linkWatchlistToMovie(Watchlist watchlist) {
-        this.watchlists.add(watchlist);
-        watchlist.getMovies().add(this);
-    }
 
     public int getId() {
         return id;
@@ -131,6 +117,21 @@ public class Movie{
         this.criticRatings.add(criticRating);
         if(criticRating.getMovie() != this) {
             criticRating.setMovie(this);
+        }
+    }
+
+    public Set<MovieWatchlist> getMovieWatchlists() {
+        return movieWatchlists;
+    }
+
+    public void setMovieWatchlists(Set<MovieWatchlist> movieWatchlists) {
+        this.movieWatchlists = movieWatchlists;
+    }
+
+    public void linkWatchListToMovie(MovieWatchlist movieWatchlist) {
+        this.movieWatchlists.add(movieWatchlist);
+        if (movieWatchlist.getMovie() != this) {
+            movieWatchlist.setMovie(this);
         }
     }
 }

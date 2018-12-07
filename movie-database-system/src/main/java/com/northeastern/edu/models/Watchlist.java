@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,7 +15,6 @@ public class Watchlist {
     private int id;
     private String name;
 
-    private boolean watched;
     @Temporal(TemporalType.DATE)
     private Date created;
 
@@ -25,8 +25,8 @@ public class Watchlist {
     @JsonIgnore
     private Resident resident;
 
-    @ManyToMany(mappedBy="watchlists")
-    private Set<Movie> movies;
+    @OneToMany(mappedBy = "watchlist", fetch = FetchType.EAGER)
+    private Set<MovieWatchlist> movieWatchlists = new HashSet<>();
 
     public Watchlist() {
     }
@@ -36,7 +36,6 @@ public class Watchlist {
         this.name = name;
         this.created = created;
         this.updated = updated;
-        this.watched = watched;
 
     }
 
@@ -55,14 +54,6 @@ public class Watchlist {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean isWatched() {
-        return watched;
-    }
-
-    public void setWatched(boolean watched) {
-        this.watched = watched;
     }
 
     public Date getCreated() {
@@ -90,12 +81,18 @@ public class Watchlist {
         resident.getWatchlists().add(this);
     }
 
-    public void addMovieToWatchList(Movie movie) {
-        this.movies.add(movie);
-        movie.getWatchlists().add(this);
+    public Set<MovieWatchlist> getMovieWatchlists() {
+        return movieWatchlists;
     }
 
-    public Set<Movie> getMovies() {
-        return movies;
+    public void setMovieWatchlists(Set<MovieWatchlist> movieWatchlists) {
+        this.movieWatchlists = movieWatchlists;
+    }
+
+    public void linkWatchListToMovie(MovieWatchlist movieWatchlist) {
+        this.movieWatchlists.add(movieWatchlist);
+        if (movieWatchlist.getWatchlist() != this) {
+            movieWatchlist.setWatchlist(this);
+        }
     }
 }
