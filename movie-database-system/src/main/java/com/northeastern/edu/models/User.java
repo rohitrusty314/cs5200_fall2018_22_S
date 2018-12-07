@@ -2,6 +2,8 @@ package com.northeastern.edu.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -17,6 +19,9 @@ public class User {
 
     @Temporal(TemporalType.DATE)
     private Date dob;
+
+    @OneToMany(mappedBy = "review", fetch = FetchType.EAGER)
+    private Set<Review> reviews = new HashSet<>();
 
     public User() {
 
@@ -85,5 +90,16 @@ public class User {
 
     public void setDob(Date dob) {
         this.dob = dob;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReview(Review review) {
+        this.reviews.add(review);
+        if (review.getUser() != this) {
+            review.setUser(this);
+        }
     }
 }

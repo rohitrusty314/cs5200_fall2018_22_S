@@ -11,6 +11,9 @@ public class Review {
     private int id;
     private String review;
 
+    @ManyToOne
+    private User user;
+
     @Temporal(TemporalType.DATE)
     private Date created;
 
@@ -57,5 +60,16 @@ public class Review {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+        if (!user.getReviews().contains(this)) {
+            user.getReviews().add(this);
+        }
     }
 }
