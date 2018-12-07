@@ -9,6 +9,9 @@ public class CriticReview extends Review{
     private long upVotes;
     private long downVotes;
 
+    public CriticReview () {
+        
+    }
     public CriticReview(String review, Date created, Date updated, long upVotes, long downVotes) {
         super(review, created, updated);
         this.upVotes = upVotes;

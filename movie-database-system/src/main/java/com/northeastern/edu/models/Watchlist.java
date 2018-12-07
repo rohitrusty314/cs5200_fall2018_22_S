@@ -31,7 +31,7 @@ public class Watchlist {
     public Watchlist() {
     }
 
-    public Watchlist(String name, Date created, Date updated, boolean watched) {
+    public Watchlist(String name, Date created, Date updated) {
 
         this.name = name;
         this.created = created;
