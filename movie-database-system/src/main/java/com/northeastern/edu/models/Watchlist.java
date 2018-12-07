@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -20,11 +22,14 @@ public class Watchlist {
     private Date updated;
 
     @ManyToOne
+    @JsonIgnore
     private Resident resident;
 
     @ManyToMany(mappedBy="watchlists")
     private Set<Movie> movies;
 
+    public Watchlist() {
+    }
 
     public Watchlist(String name, Date created, Date updated, boolean watched) {
 

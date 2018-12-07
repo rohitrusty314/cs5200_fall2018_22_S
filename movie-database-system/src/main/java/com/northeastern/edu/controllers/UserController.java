@@ -1,9 +1,6 @@
 package com.northeastern.edu.controllers;
 
-import com.northeastern.edu.models.Critic;
-import com.northeastern.edu.models.Resident;
-import com.northeastern.edu.models.Role;
-import com.northeastern.edu.models.User;
+import com.northeastern.edu.models.*;
 import com.northeastern.edu.repositories.CriticRepository;
 import com.northeastern.edu.repositories.ResidentRepository;
 import com.northeastern.edu.repositories.UserRepository;
@@ -11,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+
 
 @RestController
 public class UserController {
@@ -57,13 +56,17 @@ public class UserController {
 
     @GetMapping("/api/user/name/{name}")
     public User findUserByUserName(@PathVariable("name") String username) {
-
         return userRepository.findUserByUsername(username);
     }
 
     @GetMapping("/api/users")
     public List<User> findUserByUserName() {
-
         return (List<User>) userRepository.findAll();
+    }
+
+    @GetMapping("/api/user/{userId}/watchlists")
+    public Set<Watchlist> getAllWatchlistsForResident(@PathVariable("userId") int userId) {
+        Resident resident =  residentRepository.findById(userId).get();
+        return resident.getWatchlists();
     }
 }
