@@ -10,6 +10,8 @@ import com.northeastern.edu.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
@@ -40,6 +42,28 @@ public class UserController {
         return criticRepository.save(critic);
     }
 
-//    @GetMapping("api/user/findUserByCredential")
-//    public User
+    @PostMapping("/api/login")
+    public User findUserByCredentials(@RequestBody User user) {
+
+        List<User> users = userRepository.
+                findUserByCredentials(user.getUsername(), user.getPassword());
+
+        if(users.size() == 0) {
+            return  new User();
+        } else {
+            return users.get(0);
+        }
+    }
+
+    @GetMapping("/api/user/name/{name}")
+    public User findUserByUserName(@PathVariable("name") String username) {
+
+        return userRepository.findUserByUsername(username);
+    }
+
+    @GetMapping("/api/users")
+    public List<User> findUserByUserName() {
+
+        return (List<User>) userRepository.findAll();
+    }
 }
