@@ -1,9 +1,6 @@
 package com.northeastern.edu.controllers;
 
-import com.northeastern.edu.models.CriticReview;
-import com.northeastern.edu.models.Movie;
-import com.northeastern.edu.models.ResidentReview;
-import com.northeastern.edu.models.Review;
+import com.northeastern.edu.models.*;
 import com.northeastern.edu.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +38,7 @@ public class MovieController {
         return criticReviews;
     }
 
-    @GetMapping("/api/movie/{movieId}/reviews/critic")
+    @GetMapping("/api/movie/{movieId}/reviews/resident")
     public List<ResidentReview> getAllResidentMovieReviews(@PathVariable("movieId") int movieId) {
         Movie movie = movieRepository.findById(movieId).get();
         List<ResidentReview> residentReviews = new ArrayList<>();
@@ -54,5 +51,19 @@ public class MovieController {
         return residentReviews;
     }
 
+    @GetMapping("/api/movie/{movieId}/ratings/critic")
+    public double getAverageCriticRatingsForMovie(@PathVariable("movieId") int movieId) {
+        Set<CriticRating> criticRatings = movieRepository.findById(movieId).get().getCriticRatings();
+        double sum = 0;
+        for(CriticRating criticRating : criticRatings) {
+            sum += criticRating.getRating();
+        }
 
+        return sum/criticRatings.size();
+    }
+
+    @GetMapping("/api/movie/{movieId}/cast")
+    public Set<Cast> getMovieCast(@PathVariable("movieId") int movieId) {
+        return movieRepository.findById(movieId).get().getCast();
+    }
 }

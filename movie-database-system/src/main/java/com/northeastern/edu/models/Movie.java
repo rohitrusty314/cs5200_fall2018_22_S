@@ -24,7 +24,7 @@ public class Movie{
     private Set<MovieWatchlist> movieWatchlists = new HashSet<>();
 
     @ManyToMany(mappedBy="movies")
-    private Set<Cast> casts;
+    private Set<Cast> cast;
 
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
@@ -33,21 +33,14 @@ public class Movie{
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     private Set<CriticRating> criticRatings = new HashSet<>();
 
-
-    public Movie () {
-
-    }
-
+    public Movie () { }
 
     public Movie (String name, Date releaseDate, String genre, String language) {
-
         this.name = name;
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.language = language;
-
     }
-
 
     public int getId() {
         return id;
@@ -89,12 +82,12 @@ public class Movie{
         this.language = language;
     }
 
-    public Set<Cast> getCasts() {
-        return casts;
+    public Set<Cast> getCast() {
+        return cast;
     }
 
     public void addCastToMovie(Cast cast) {
-        this.casts.add(cast);
+        this.cast.add(cast);
         cast.getMovies().add(this);
     }
 

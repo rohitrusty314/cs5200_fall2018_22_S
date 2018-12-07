@@ -76,6 +76,6 @@ public class Cast {
 
     public void linkMovieToCast(Movie movie) {
         this.movies.add(movie);
-        movie.getCasts().add(this);
+        movie.getCast().add(this);
     }
 }
