@@ -23,6 +23,9 @@ public class CriticRating{
     @ManyToOne
     private Movie movie;
 
+    public CriticRating() {
+        
+    }
     public CriticRating(long rating, Date created, Date lastUpdated) {
 
         this.rating = rating;
