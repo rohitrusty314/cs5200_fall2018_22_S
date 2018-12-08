@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="MovieDBApp">
 <head>
-    <meta charset="UTF-8">
-    <title>Welcome to Movie database</title>
+    <meta charset="ISO-8859-1">
+    <title>Movie Database</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!--<script src="https://code.jquery.com/jquery-3.1.1.js"></script>-->
+    <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <link href="css/textAngular.css" rel="stylesheet">
+    <!---->
+
+    <!--&lt;!&ndash;mobile responsive&ndash;&gt;-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>-->
+
+    <script src="//code.angularjs.org/1.2.20/angular-sanitize.min.js"></script>
+
+
+    <!-- services -->
+    <script src="services/user.service.client.js"></script>
+
+    <!-- controllers -->
+    <script src="controllers/login.controller.client.js"></script>
+    <script src="controllers/register.controller.client.js"></script>
+    <script src="controllers/search.controller.client.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 </head>
 <body>
-<h1>Hello from Rohit and Himanshu!</h1>
+<div ng-view></div>
 </body>
 </html>
