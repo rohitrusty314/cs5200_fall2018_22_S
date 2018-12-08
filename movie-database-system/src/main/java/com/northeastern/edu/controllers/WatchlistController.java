@@ -3,13 +3,9 @@ package com.northeastern.edu.controllers;
 import com.northeastern.edu.models.*;
 import com.northeastern.edu.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 

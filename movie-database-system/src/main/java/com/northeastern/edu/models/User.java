@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,12 +23,11 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date dob;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "review", fetch = FetchType.EAGER)
     private Set<Review> reviews = new HashSet<>();
 
-    public User() {
-
-    }
+    public User() { }
 
     public User(String username, String password, String firstName, String lastName, String email, Date dob) {
         this.username = username;

@@ -1,8 +1,6 @@
 package com.northeastern.edu.repositories;
 
-import com.northeastern.edu.models.Cast;
 import com.northeastern.edu.models.MovieWatchlist;
-import com.northeastern.edu.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

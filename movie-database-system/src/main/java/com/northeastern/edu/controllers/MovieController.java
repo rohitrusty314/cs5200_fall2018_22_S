@@ -58,14 +58,11 @@ public class MovieController {
         for(CriticRating criticRating : criticRatings) {
             sum += criticRating.getRating();
         }
-
         if(criticRatings.size() > 0) {
             return sum/criticRatings.size();
         }
 
         return  0;
-
-
     }
 
     @GetMapping("/api/movie/{movieId}/cast")
