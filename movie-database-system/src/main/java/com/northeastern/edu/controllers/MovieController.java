@@ -44,7 +44,7 @@ public class MovieController {
         List<ResidentReview> residentReviews = new ArrayList<>();
 
         for(Review review : movie.getReviews()){
-            if(review instanceof CriticReview) {
+            if(review instanceof ResidentReview) {
                 residentReviews.add((ResidentReview) review);
             }
         }
