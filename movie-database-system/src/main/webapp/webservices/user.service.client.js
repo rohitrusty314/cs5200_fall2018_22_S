@@ -21,7 +21,7 @@
 
         function createUser(user) {
             console.log("reached in service create user");
-            return $http.post("/api/user", user)
+            return $http.post("/api/resident", user)
                 .then(function (response) {
                     return response.data;
                 });
