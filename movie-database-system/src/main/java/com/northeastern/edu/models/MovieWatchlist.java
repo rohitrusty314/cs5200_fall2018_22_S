@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class MovieWatchlist {
     private Movie movie;
 
     @ManyToOne
+    @JsonIgnore
     private Watchlist watchlist;
 
     public MovieWatchlist() {

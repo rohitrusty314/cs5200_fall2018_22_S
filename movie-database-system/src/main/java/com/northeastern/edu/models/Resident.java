@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -10,6 +12,7 @@ public class Resident extends User{
 
 
     @OneToMany(mappedBy = "resident", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<Watchlist> watchlists = new HashSet<>();
 
 

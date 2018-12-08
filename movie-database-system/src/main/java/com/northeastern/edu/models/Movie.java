@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +23,7 @@ public class Movie{
     private String language;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<MovieWatchlist> movieWatchlists = new HashSet<>();
 
     @ManyToMany(mappedBy="movies")

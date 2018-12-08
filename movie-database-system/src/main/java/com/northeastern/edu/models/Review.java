@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ public class Review {
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     private Movie movie;
 
     @Temporal(TemporalType.DATE)
