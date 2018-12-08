@@ -3,8 +3,10 @@ package com.northeastern.edu.controllers;
 import com.northeastern.edu.models.*;
 import com.northeastern.edu.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +43,7 @@ public class WatchlistController {
 
 
     @GetMapping("/api/watchlist/{wid}/movie/{mid}")
-    public Watchlist addMovieToWatchlist(@PathVariable("wid") int wId, @PathVariable("mid") int mid) {
+    public MovieWatchlist addMovieToWatchlist(@PathVariable("wid") int wId, @PathVariable("mid") int mid) {
 
         Movie fetchedMovie = movieRepository.findById(mid).get();
         Watchlist watchlist = watchlistRepository.findById(wId).get();
@@ -51,14 +53,15 @@ public class WatchlistController {
         movieWatchlist.setWatchlist(watchlist);
         movieWatchlist.setMovie(fetchedMovie);
         movieWatchlists.add(movieWatchlist);
-        return  watchlistRepository.save(watchlist);
+        return  movieWatchlistRepository.save(movieWatchlist);
 
     }
 
-    @GetMapping("/api/watchlist/{wid}/movie/{mid}/watched")
-    public Watchlist setMovieToWatched(@PathVariable("wid") int wid, @PathVariable("mid") int mid) {
+    @GetMapping("/api/watchlist/{wid}/movie/{mid}/watch")
+    public Watchlist setMovieToWatched(@PathVariable("wid") int wid, @PathVariable("mid") int mid,
+                                       @RequestParam("watched") boolean watched) {
         MovieWatchlist movieWatchlist = movieWatchlistRepository.findByWatchlistAndMovieId(wid, mid);
-        movieWatchlist.setWatched(true);
+        movieWatchlist.setWatched(watched);
         return movieWatchlistRepository.save(movieWatchlist).getWatchlist();
     }
 
