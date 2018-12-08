@@ -50,7 +50,6 @@ public class WatchlistController {
         movieWatchlist.setMovie(fetchedMovie);
         movieWatchlists.add(movieWatchlist);
         return  movieWatchlistRepository.save(movieWatchlist);
-
     }
 
     @PutMapping("/api/watchlist/{wid}/movie/{mid}/delete")

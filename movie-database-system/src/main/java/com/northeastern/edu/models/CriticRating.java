@@ -1,5 +1,7 @@
 package com.northeastern.edu.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class CriticRating{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private long rating;
+    private int rating;
 
     @Temporal(TemporalType.DATE)
     private Date created;
@@ -17,17 +19,17 @@ public class CriticRating{
     @Temporal(TemporalType.DATE)
     private Date lastUpdated;
 
+    @JsonIgnore
     @ManyToOne
     private Critic critic;
 
+    @JsonIgnore
     @ManyToOne
     private Movie movie;
 
-    public CriticRating() {
-        
-    }
-    public CriticRating(long rating, Date created, Date lastUpdated) {
-
+    public CriticRating() { }
+    
+    public CriticRating(int rating, Date created, Date lastUpdated) {
         this.rating = rating;
         this.created = created;
         this.lastUpdated = lastUpdated;
@@ -41,11 +43,11 @@ public class CriticRating{
         this.id = id;
     }
 
-    public long getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(long rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
