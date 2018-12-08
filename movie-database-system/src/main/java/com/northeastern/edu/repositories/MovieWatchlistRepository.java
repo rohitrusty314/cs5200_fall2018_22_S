@@ -14,4 +14,7 @@ public interface MovieWatchlistRepository extends CrudRepository<MovieWatchlist,
 
     @Query(value = "SELECT * from movie_watchlist  WHERE watchlist_id= :wid AND movie_id= :mid", nativeQuery = true)
     MovieWatchlist findByWatchlistAndMovieId(@Param("wid") int wid, @Param("mid") int mid);
+
+    @Query(value = "DELETE * FROM movie_watchlist WHERE watchlist_id = :wid AND movie_id = :mid", nativeQuery = true)
+    void deleteByWatchlistIdAndMovieId(@Param("wid") int wid, @Param("mid") int mid);
 }

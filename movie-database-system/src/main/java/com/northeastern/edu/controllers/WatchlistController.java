@@ -38,7 +38,7 @@ public class WatchlistController {
     }
 
 
-    @GetMapping("/api/watchlist/{wid}/movie/{mid}")
+    @PutMapping("/api/watchlist/{wid}/movie/{mid}/add")
     public MovieWatchlist addMovieToWatchlist(@PathVariable("wid") int wId, @PathVariable("mid") int mid) {
 
         Movie fetchedMovie = movieRepository.findById(mid).get();
@@ -53,6 +53,12 @@ public class WatchlistController {
 
     }
 
+    @PutMapping("/api/watchlist/{wid}/movie/{mid}/delete")
+    public void deleteMovieFromWatchlist(@PathVariable("wid") int watchlistId,
+                                                   @PathVariable("mid") int movieId) {
+        movieWatchlistRepository.deleteByWatchlistIdAndMovieId(watchlistId, movieId);
+    }
+
     @GetMapping("/api/watchlist/{wid}/movie/{mid}/watch")
     public Watchlist setMovieToWatched(@PathVariable("wid") int wid, @PathVariable("mid") int mid,
                                        @RequestParam("watched") boolean watched) {
@@ -61,6 +67,8 @@ public class WatchlistController {
         return movieWatchlistRepository.save(movieWatchlist).getWatchlist();
     }
 
-
-
+    @DeleteMapping("/api/watchlist/{wid}/delete")
+    public void deleteWatchlist(@PathVariable("wid") int watchlistId) {
+        watchlistRepository.deleteById(watchlistId);
+    }
 }
