@@ -21,11 +21,18 @@
             } else {
                 if (user.password === user.verifypassword) {
                     UserService
-                        .createUser(user)
-                        .then(function (user) {
-                            $location.url("/login");
+                        .findUserByUsername(user.username)
+                        .then(function (response) {
+                            if (response === '') {
+                                UserService
+                                    .createUser(user)
+                                    .then(function (user) {
+                                        $location.url("/login");
+                                    })
+                            } else {
+                                vm.alert = "User Name already taken, Please try another one";
+                            }
                         })
-
                 } else {
                     vm.alert = "Password and verify password do not match";
                 }

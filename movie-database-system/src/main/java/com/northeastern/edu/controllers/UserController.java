@@ -54,13 +54,13 @@ public class UserController {
         }
     }
 
-    @GetMapping("/api/user/name/{name}")
-    public User findUserByUserName(@PathVariable("name") String username) {
+    @GetMapping("/api/user")
+    public User findUserByUserName(@RequestParam("username")  String username) {
         return userRepository.findUserByUsername(username);
     }
 
     @GetMapping("/api/users")
-    public List<User> findUserByUserName() {
+    public List<User> findAllUsers() {
         return (List<User>) userRepository.findAll();
     }
 

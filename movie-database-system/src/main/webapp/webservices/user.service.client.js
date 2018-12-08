@@ -7,7 +7,8 @@
     function userService($http) {
         var api = {
             "findUserByCredentials": findUserByCredentials,
-            "createUser": createUser
+            "createUser": createUser,
+            "findUserByUsername": findUserByUsername
         };
         return api;
 
@@ -20,6 +21,13 @@
 
         function createUser(user) {
             return $http.post("/api/user", user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findUserByUsername(username) {
+            return $http.get("/api/user?username=" + username)
                 .then(function (response) {
                     return response.data;
                 });
