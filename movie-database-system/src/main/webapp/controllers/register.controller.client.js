@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("RegisterController", registerController);
 
-    function registerController($scope, $location) {
+    function registerController($scope, $location, UserService) {
         var vm = this;
 
         function init() {
@@ -23,6 +23,7 @@
                     UserService
                         .findUserByUsername(user.username)
                         .then(function (response) {
+                            console.log(response)
                             if (response === '') {
                                 UserService
                                     .createUser(user)
