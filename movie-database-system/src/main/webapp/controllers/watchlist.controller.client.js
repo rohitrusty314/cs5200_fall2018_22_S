@@ -6,20 +6,19 @@
     function watchlistController($scope, $location, WatchListService) {
         var vm = this;
 
-        vm.watchlists = watchlists;
-
         function init() {
             console.log("definitely getting the user watchlists now!");
-            WatchListService
-                .findWatchlistsByUserId(user);
+            // WatchListService
+            //     .findWatchlistsByUserId(user);
 
         }
 
         init();
+        vm.watchlists = watchlists;
 
-        function watchlists(user) {
-            console.log("");
-
-        }
+        // function watchlists(user) {
+        //     console.log("");
+        //
+        // }
     }
 })();

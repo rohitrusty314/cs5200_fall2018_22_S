@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("LoginController", loginController);
 
-    function loginController($scope, $location, UserService) {
+    function loginController($rootScope, $scope, $location, UserService) {
         var vm = this;
 
         // event handlers
@@ -25,11 +25,16 @@
         }
 
         function searchForMovies(user) {
+
+            console.log(user)
             if (user.id === 0) {
                 vm.alert = "User not found";
             }
            else {
-               $location.url("/search");
+                $rootScope.userId = user.id;
+                $rootScope.userRole = user.role;
+                console.log("rootUserId", $rootScope.userId)
+                $location.url("/search");
             }
         }
     }

@@ -13,8 +13,11 @@
         return api;
 
         function findUserByCredentials(user) {
+            console.log("user by cred");
             return $http.post("/api/login", user)
                 .then(function (response) {
+                    console.log("user found");
+                    console.log(response.data);
                     return response.data;
                 });
         }

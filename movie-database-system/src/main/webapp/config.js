@@ -9,8 +9,8 @@
 
         $routeProvider
             .when("/", {
-                templateUrl: "templates/login.view.client.html",
-                controller: "LoginController",
+                templateUrl: "templates/search.view.client.html",
+                controller: "SearchController",
                 controllerAs: "model"
             })
             .when("/login", {
@@ -31,7 +31,28 @@
             .when("/watchlists", {
                 templateUrl: "templates/watchlists.view.client.html",
                 controller: "WatchlistController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
+            })
+            .when("/detail", {
+                templateUrl: "templates/detail.view.client.html",
+                controller: "MovieDetailController",
                 controllerAs: "model"
             })
+
+        function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
+            var deferred = $q.defer();
+            $http.get('/api/user/loggedin')
+                .success(function(user) {
+                    $rootScope.errorMessage = null;
+                    if (user !== '') {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $location.url('/login');
+                    }
+                });
+            return deferred.promise;
+        };
     }
 })();

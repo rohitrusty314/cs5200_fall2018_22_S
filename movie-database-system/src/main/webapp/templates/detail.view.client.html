@@ -1,0 +1,53 @@
+<nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
+    <h2 class="vg-h1">Movie DB <img src="/templates/logo.png/" width="45px" height="45px"></h2>
+</nav>
+
+<br>
+
+<div class="row">
+
+
+    <center> <H2>{{model.detail.Title}}</H2> </center>
+    <center><img ng-src={{model.detail.Poster}} /></center>
+    <center><h4> Overview : {{model.detail.Plot}}</h4></center>
+    <center><h4> Director : {{model.detail.Director}}</h4></center>
+    <center><h4> Cast : {{model.detail.Actors}}</h4></center>
+
+
+
+
+    <textarea ng-model="model.review"
+              placeholder="Review this movie. . ."
+              class="form-control"
+              rows="7"
+              id="review-movie"
+              required> </textarea>
+
+    <br>
+    <center><a ng-click="model.writeReview(model.review)"
+               class="btn btn-primary">Post Review</a></center>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-6">
+
+    <center> <H1>Critic Reviews</H1> </center>
+    </div>
+
+    <div class="col-lg-6">
+
+    <center><H1>User Reviews</H1></center>
+    </div>
+
+</div>
+
+
+<nav class="navbar navbar-light bg-light navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <p class="footer">&copy; Himanshu, Rohit</p>
+        </div>
+    </div>
+</nav>

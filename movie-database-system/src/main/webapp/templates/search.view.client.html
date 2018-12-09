@@ -1,26 +1,63 @@
 <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
     <h2 class="vg-h1">Movie DB <img src="/templates/logo.png/" width="45px" height="45px"></h2>
+
 </nav>
 
 <br>
-<H1>This us the User search page</H1>
-
-<a class="btn btn-primary btn-block"
-   ng-click="model.watchlists(user)">Go to your  Watchlists</a>
+<br>
+<br>
+<button class="btn btn-info btn-lg center-block pull-right"
+        ng-click="model.watchlists(user)">Go to your Watchlists</button>
+<br>
+<br>
+<br>
 <br>
 
-<input ng-model="search.text"
-       name="search"
-       id="search"
-       type="text"
-       class="form-control"
-       placeholder="Search. . ."
-       required/>
+<div>
+
+    <input class = "form-control glyphicon glyphicon-search"
+           ng-model="movie"
+           name="search"
+           id="search"
+           type="text"
+           placeholder="Search. . ."
+           required>
+
+    <br>
+        <a class="btn btn-primary btn-block"
+            ng-click="model.searchMovies(movie)">Search</a>
+
+</div>
+
+
 <br>
 
-<a class="btn btn-primary btn-block"
-   ng-click="model.searchMovies(user)">Search</a>
 <br>
+
+
+<div ng-if="model.movies.length">
+    <ul>
+        <u> <H1>Movies</H1> </u>
+        <br>
+        <br>
+        <li ng-repeat="movie in model.movies">
+            <div class="row">
+                <div class="col-lg-3">
+                    <img ng-src={{movie.Poster}}
+                         ng-click="model.searchIndividualMovie(movie.imdbID)"/>
+                </div>
+                <div class="col-lg-3 pull-left">
+                    <h3 ng-click="model.searchIndividualMovie(movie.imdbID)">{{movie.Title}} ({{movie.Year}})</h3>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        </li>
+    </ul>
+</div>
+
+
 
 <nav class="navbar navbar-light bg-light navbar-fixed-bottom">
     <div class="container-fluid">
