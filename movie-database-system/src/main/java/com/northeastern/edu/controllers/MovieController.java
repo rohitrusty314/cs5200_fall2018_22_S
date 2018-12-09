@@ -17,7 +17,13 @@ public class MovieController {
 
     @PostMapping("/api/movie")
     public Movie createMovie (@RequestBody Movie movie) {
-        return movieRepository.save(movie);
+        Movie m = movieRepository.findMovieByImdbId(movie.getImdbId());
+        if(m == null) {
+            return movieRepository.save(movie);
+        } else {
+            return m;
+        }
+
     }
 
     @GetMapping("/api/movie/{movieId}")
@@ -26,8 +32,8 @@ public class MovieController {
     }
 
     @GetMapping("/api/movie/{movieId}/reviews/critic")
-    public List<CriticReview> getAllCriticMovieReviews(@PathVariable("movieId") int movieId) {
-        Movie movie = movieRepository.findById(movieId).get();
+    public List<CriticReview> getAllCriticMovieReviews(@PathVariable("movieId") String movieId) {
+        Movie movie = movieRepository.findMovieByImdbId(movieId);
         List<CriticReview> criticReviews = new ArrayList<>();
 
         for(Review review : movie.getReviews()){
@@ -39,8 +45,8 @@ public class MovieController {
     }
 
     @GetMapping("/api/movie/{movieId}/reviews/resident")
-    public List<ResidentReview> getAllResidentMovieReviews(@PathVariable("movieId") int movieId) {
-        Movie movie = movieRepository.findById(movieId).get();
+    public List<ResidentReview> getAllResidentMovieReviews(@PathVariable("movieId") String movieId) {
+        Movie movie = movieRepository.findMovieByImdbId(movieId);
         List<ResidentReview> residentReviews = new ArrayList<>();
 
         for(Review review : movie.getReviews()){

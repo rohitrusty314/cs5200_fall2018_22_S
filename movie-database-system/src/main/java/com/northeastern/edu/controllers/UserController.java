@@ -7,6 +7,7 @@ import com.northeastern.edu.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Set;
 
@@ -41,8 +42,13 @@ public class UserController {
         return criticRepository.save(critic);
     }
 
+    @RequestMapping(value="/api/user/loggedin", method = RequestMethod.GET)
+    public User checkLoggedIn(HttpSession session){
+        return (User) session.getAttribute("session");
+    }
+
     @PostMapping("/api/login")
-    public User findUserByCredentials(@RequestBody User user) {
+    public User findUserByCredentials(HttpSession session, @RequestBody User user) {
 
         List<User> users = userRepository.
                 findUserByCredentials(user.getUsername(), user.getPassword());
@@ -50,7 +56,9 @@ public class UserController {
         if(users.size() == 0) {
             return  new User();
         } else {
-            return users.get(0);
+            User u = users.get(0);
+            session.setAttribute("session", u);
+            return u;
         }
     }
 

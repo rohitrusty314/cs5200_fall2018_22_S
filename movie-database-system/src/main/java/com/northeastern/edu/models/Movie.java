@@ -15,12 +15,13 @@ public class Movie{
     private int id;
     private String name;
 
-    @Temporal(TemporalType.DATE)
-    private Date releaseDate;
+    private String releaseDate;
 
     private String genre;
 
     private String language;
+
+    private String imdbId;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.EAGER)
     @JsonIgnore
@@ -38,11 +39,12 @@ public class Movie{
 
     public Movie () { }
 
-    public Movie (String name, Date releaseDate, String genre, String language) {
+    public Movie (String name, String releaseDate, String genre, String language , String imdbId) {
         this.name = name;
         this.releaseDate = releaseDate;
         this.genre = genre;
         this.language = language;
+        this.imdbId = imdbId;
     }
 
     public int getId() {
@@ -61,11 +63,11 @@ public class Movie{
         this.name = name;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -129,5 +131,13 @@ public class Movie{
         if (movieWatchlist.getMovie() != this) {
             movieWatchlist.setMovie(this);
         }
+    }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
     }
 }
