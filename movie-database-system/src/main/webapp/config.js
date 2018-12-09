@@ -28,5 +28,10 @@
                 controller: "SearchController",
                 controllerAs: "model"
             })
+            .when("/watchlists", {
+                templateUrl: "templates/watchlists.view.client.html",
+                controller: "WatchlistController",
+                controllerAs: "model"
+            })
     }
 })();

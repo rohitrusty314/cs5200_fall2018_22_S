@@ -3,7 +3,24 @@
 </nav>
 
 <br>
-<H1>Search Page Goes Here</H1>
+<H1>This us the User search page</H1>
+
+<a class="btn btn-primary btn-block"
+   ng-click="model.watchlists(user)">Go to your  Watchlists</a>
+<br>
+
+<input ng-model="search.text"
+       name="search"
+       id="search"
+       type="text"
+       class="form-control"
+       placeholder="Search. . ."
+       required/>
+<br>
+
+<a class="btn btn-primary btn-block"
+   ng-click="model.searchMovies(user)">Search</a>
+<br>
 
 <nav class="navbar navbar-light bg-light navbar-fixed-bottom">
     <div class="container-fluid">

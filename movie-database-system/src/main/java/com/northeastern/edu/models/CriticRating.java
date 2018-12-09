@@ -28,7 +28,7 @@ public class CriticRating{
     private Movie movie;
 
     public CriticRating() { }
-    
+
     public CriticRating(int rating, Date created, Date lastUpdated) {
         this.rating = rating;
         this.created = created;
