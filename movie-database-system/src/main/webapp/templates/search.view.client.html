@@ -1,6 +1,10 @@
 <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
     <h2 class="vg-h1">Movie DB <img src="/templates/logo.png/" width="45px" height="45px">
-        <button class="btn btn-info btn-lg center-block pull-right" ng-click="model.profile()">Profile</button>
+
+            <button ng-if ="model.admin" class="btn btn-warning btn-lg center-block pull-right"
+                    ng-click="model.goToAdmin()">Admin</button>
+
+            <button class="btn btn-info btn-lg center-block pull-right" ng-click="model.profile()">Profile</button>
     </h2>
 </nav>
 

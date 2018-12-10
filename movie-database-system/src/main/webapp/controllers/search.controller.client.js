@@ -5,6 +5,12 @@
 
     function searchController($rootScope, $scope, $location, $http) {
         var vm = this;
+
+        if($rootScope.userRole === 'ADMIN') {
+            vm.admin = 'ADMIN';
+        }
+
+
         function init() {
         }
 
@@ -14,6 +20,7 @@
         vm.searchMovies = searchMovies;
         vm.searchIndividualMovie = searchIndividualMovie;
         vm.profile = profile;
+        vm.goToAdmin = goToAdmin;
 
         function searchIndividualMovie(imdbId) {
 
@@ -42,6 +49,10 @@
 
         function profile() {
             $location.url("/profile/" + $rootScope.userId);
+        }
+
+        function goToAdmin() {
+            $location.url("/admin/" + $rootScope.userId);
         }
 
     }

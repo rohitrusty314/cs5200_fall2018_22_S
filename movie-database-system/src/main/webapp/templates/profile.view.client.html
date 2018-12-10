@@ -71,26 +71,45 @@
         <br>
     </form>
 
-    <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block">
-        Update
-    </a>
-    <a class="btn btn-danger  btn-block"
-       href="#/search">
-        Cancel
-    </a>
+    <div ng-if = "!model.admin">
 
-    <div ng-if="model.critic">
-        <a ng-click="model.goToFollowers()" class="btn btn-info btn-block">
-            View All Followers
+
+        <a ng-click="model.updateUser(model.user)" class="btn btn-success btn-block">
+            Update
+        </a>
+        <a class="btn btn-danger  btn-block"
+           href="#/search">
+            Cancel
+        </a>
+
+    </div>
+
+    <div ng-if = "model.admin">
+        <a ng-click="model.updateByAdmin(model.user)" class="btn btn-success btn-block">
+            Update User
+        </a>
+        <a ng-click="model.cancelUpdate()" class="btn btn-danger  btn-block" >
+            Cancel Update
         </a>
     </div>
 
 
-    <div ng-if="model.resident">
-        <a ng-click="model.goToFollowCritic()" class="btn btn-info btn-block">
-            View Critics and Follow
-        </a>
+    <div ng-if = "!model.admin">
+
+        <div ng-if="model.critic">
+            <a ng-click="model.goToFollowers()" class="btn btn-info btn-block">
+                View My Details
+            </a>
+        </div>
+
+
+        <div ng-if="model.resident">
+            <a ng-click="model.goToFollowCritic()" class="btn btn-info btn-block">
+                View My Details and follow Critics
+            </a>
+        </div>
     </div>
+
 </div>
 
 

@@ -50,7 +50,7 @@
                 controllerAs: "model",
                 resolve: {loggedin: checkLoggedin}
             })
-            .when("/admin", {
+            .when("/admin/:uid", {
                 templateUrl: "templates/admin.view.client.html",
                 controller: "AdminController",
                 controllerAs: "model"

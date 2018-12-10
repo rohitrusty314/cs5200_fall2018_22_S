@@ -8,6 +8,16 @@
 <br/>
 <br/>
 <br/>
+
+<center>
+
+    <button type="button" class="btn btn-primary btn-lg" ng-click="model.addUser()">
+        <span class="glyphicon glyphicon-plus"></span> Add User
+    </button>
+
+</center>
+
+
 <div>
     <ul>
         <h2>Users(username / role / email): </h2>
@@ -20,7 +30,7 @@
                         <span class="glyphicon glyphicon-minus"></span> Delete User
                     </button>
 
-                    <button type="button" class="btn btn-primary btn-sm" ng-click="">
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="model.updateUser(user)">
                         <span class="glyphicon glyphicon-pencil"></span> Edit User
                     </button>
                 </div>
