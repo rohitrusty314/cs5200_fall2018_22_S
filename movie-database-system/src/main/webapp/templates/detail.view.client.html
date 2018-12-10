@@ -9,6 +9,30 @@
 
     <center> <H2>{{model.detail.Title}}</H2> </center>
     <center><img ng-src={{model.detail.Poster}} /></center>
+    <span class="col-md-6">
+        <center><H3 class="pull-right">Rating : {{model.rating}}</H3></center>
+    </span>
+
+    <br>
+
+    <div ng-if="model.critic">
+        <span class="col-md-6">
+            <center><input class="pull-left"
+                           type="number"
+                           min="0"
+                           max="5"
+                           ng-model="rating"
+                           name="rate"
+                           id="rate"> </center>
+            <button type="button" class="glyphicon glyphicon-pencil btn btn-default btn-xs"
+                    ng-click="model.rate(rating, model.detail.imdbID)">
+
+            </button>
+        </span>
+    </div>
+
+    <br>
+    <br>
     <center><h4> Overview : {{model.detail.Plot}}</h4></center>
     <center><h4> Director : {{model.detail.Director}}</h4></center>
     <center><h4> Cast : {{model.detail.Actors}}</h4></center>
@@ -27,18 +51,76 @@
     <center><a ng-click="model.writeReview(model.review)"
                class="btn btn-primary">Post Review</a></center>
 
+
+    <br>
+    <br>
+    <div class="alert alert-danger" ng-show="model.alert">
+        {{model.alert}}
+    </div>
+
 </div>
 
 <div class="row">
 
     <div class="col-lg-6">
+        <div ng-if="model.criticReviews.length">
+            <ul>
+                <u> <H1>Critic Reviews</H1> </u>
+                <br>
+                <br>
+                <li ng-repeat="criticReview in model.criticReviews">
 
-    <center> <H1>Critic Reviews</H1> </center>
+                        <h3>{{criticReview.review}}</h3>
+
+                        <div ng-if="!model.userId ||model.resident">
+                            <button type="button" class="btn btn-default btn-sm"
+                                    ng-click="model.upvote(criticReview.id)">
+                                <span class="glyphicon glyphicon-ok"></span> UpVote : {{criticReview.upVotes}}
+                            </button>
+
+                             <button type="button" class="btn btn-default btn-sm"
+                                     ng-click="model.downvote(criticReview.id)">
+                                <span class="glyphicon glyphicon-remove"></span> DownVote : {{criticReview.downVotes}}
+                            </button>
+
+                        </div>
+
+                    <br>
+                    <br>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <div class="col-lg-6">
 
-    <center><H1>User Reviews</H1></center>
+        <div ng-if="model.residentReviews.length">
+            <ul>
+                <u> <H1>User Reviews</H1> </u>
+                <br>
+                <br>
+                <li ng-repeat="residentReview in model.residentReviews">
+
+                    <h3>{{residentReview.review}}</h3>
+
+
+
+                    <div ng-if="residentReview.endorsedByCritic">
+                        <i><p style="color:blue;"> Endorsed By Critic </p></i>
+                    </div>
+
+                    <div ng-if="!model.userId || model.critic">
+                        <button type="button" class="btn btn-default btn-sm"
+                                ng-click="model.endorse(residentReview.id)">
+                            <span class="glyphicon glyphicon-ok"></span> Endorse Review
+                        </button>
+                    </div>
+
+                    <br>
+                    <br>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </div>
@@ -51,3 +133,4 @@
         </div>
     </div>
 </nav>
+

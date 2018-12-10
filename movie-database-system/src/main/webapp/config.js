@@ -34,7 +34,7 @@
                 controllerAs: "model",
                 resolve: {loggedin: checkLoggedin}
             })
-            .when("/detail", {
+            .when("/detail/:imdbId", {
                 templateUrl: "templates/detail.view.client.html",
                 controller: "MovieDetailController",
                 controllerAs: "model"

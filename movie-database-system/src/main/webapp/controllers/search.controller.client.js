@@ -15,8 +15,8 @@
         vm.searchIndividualMovie = searchIndividualMovie;
 
         function searchIndividualMovie(imdbId) {
-            $rootScope.imdbId = imdbId;
-            $location.url("/detail");
+
+            $location.url("/detail/" + imdbId);
 
         }
 

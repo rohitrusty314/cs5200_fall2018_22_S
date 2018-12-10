@@ -58,8 +58,8 @@ public class MovieController {
     }
 
     @GetMapping("/api/movie/{movieId}/ratings/critic")
-    public double getAverageCriticRatingsForMovie(@PathVariable("movieId") int movieId) {
-        Set<CriticRating> criticRatings = movieRepository.findById(movieId).get().getCriticRatings();
+    public double getAverageCriticRatingsForMovie(@PathVariable("movieId") String movieId) {
+        Set<CriticRating> criticRatings = movieRepository.findMovieByImdbId(movieId).getCriticRatings();
         double sum = 0;
         for(CriticRating criticRating : criticRatings) {
             sum += criticRating.getRating();
