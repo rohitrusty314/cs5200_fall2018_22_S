@@ -19,32 +19,28 @@
 
             UserService
                 .findAllCritics()
-                .then(function (user) {
-                    vm.allCritics = user.allCritics;
-                    console.log(vm.allCritics);
+                .then(function (critics) {
+                    vm.allCritics = critics;
                 })
         }
         init();
 
         vm.followCritic = followCritic;
 
-        function followCritic(user) {
+        function followCritic(criticId) {
 
-            console.log(user);
             vm.alert = "";
             vm.message = "";
-            //
-            // UserService
-            //     .updateUser(user)
-            //     .then( function (value) {
-            //         UserService
-            //             .findUserById(vm.userId)
-            //             .then(function (user) {
-            //                 console.log(user);
-            //                 vm.user = user;
-            //                 vm.user.dob = new Date(user.dob);
-            //             })
-            //     });
+
+            UserService
+                .followCritic(criticId, vm.userId)
+                .then( function (response) {
+                    UserService
+                        .findUserById(vm.userId)
+                        .then(function (user) {
+                            vm.followsCritics = user.followsCritics;
+                        })
+                });
         }
 
     }

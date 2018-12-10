@@ -11,12 +11,21 @@
             "findUserByUsername": findUserByUsername,
             "findUserById": findUserById,
             "updateUser": updateUser,
-            "findAllCritics": findAllCritics
+            "findAllCritics": findAllCritics,
+            "followCritic": followCritic
         };
         return api;
 
-        function findUserById(userId) {
-            return $http.get("/api/user/" + userId)
+        function followCritic(criticId, userId) {
+
+            return $http.put("/api/resident/" + userId + "/follow/critic/" + criticId , {})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllCritics() {
+            return $http.get("/api/critics")
                 .then(function (response) {
                     console.log(response.data);
                     return response.data;

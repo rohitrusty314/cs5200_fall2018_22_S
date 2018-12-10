@@ -25,8 +25,28 @@
 
     <div class="col-lg-6">
 
+        <ul>
         <i><h1 style="color:cornflowerblue"> All Critics</h1></i>
 
+            <br>
+
+            <li ng-repeat="criticVal in model.allCritics">
+
+
+                <h2> Critic Name :{{criticVal.username}}
+
+                    <button type="button" class="btn badge btn-sm"
+                            ng-click="model.followCritic(criticVal.id)">
+                        <span class="glyphicon glyphicon-plus"></span> Follow Critic
+                    </button>
+
+                </h2>
+
+                <br>
+
+            </li>
+
+        </ul>
     </div>
 
 </div>
