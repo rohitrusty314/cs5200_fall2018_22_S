@@ -79,9 +79,18 @@
         Cancel
     </a>
 
-    <a ng-click="model.goToFollowCritic()" class="btn btn-info btn-block">
-        View Critics and Follow
-    </a>
+    <div ng-if="model.critic">
+        <a ng-click="model.goToFollowers()" class="btn btn-info btn-block">
+            View All Followers
+        </a>
+    </div>
+
+
+    <div ng-if="model.resident">
+        <a ng-click="model.goToFollowCritic()" class="btn btn-info btn-block">
+            View Critics and Follow
+        </a>
+    </div>
 </div>
 
 

@@ -105,6 +105,12 @@ public class UserController {
         return residentRepository.findById(residentId).get().getFollowsCritics();
     }
 
+    @GetMapping("/api/critic/{criticId}/follower/residents")
+    public List<Resident> getAllResidentsForCritic(@PathVariable("criticId") int criticId) {
+        return criticRepository.findById(criticId).get().getFollowedByResidents();
+    }
+
+
     @PutMapping("/api/resident/{residentId}/follow/critic/{criticId}")
     public Resident updateResidentToFollowCritic(@PathVariable("residentId") int residentId,
                                                  @PathVariable("criticId") int criticId) {

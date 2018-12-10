@@ -12,9 +12,19 @@
             "findUserById": findUserById,
             "updateUser": updateUser,
             "findAllCritics": findAllCritics,
-            "followCritic": followCritic
+            "followCritic": followCritic,
+            "findFollowersOfCritic": findFollowersOfCritic
         };
         return api;
+
+        function findFollowersOfCritic(criticId) {
+
+            return $http.get("/api/critic/" + criticId + "/follower/residents/")
+                .then(function (response) {
+                    console.log(response);
+                    return response.data;
+                });
+        }
 
         function followCritic(criticId, userId) {
 

@@ -61,6 +61,12 @@
                 controllerAs: "model",
                 resolve: {loggedin: checkLoggedin}
             })
+            .when("/followers/:uid", {
+                templateUrl: "templates/followers.view.client.html",
+                controller: "FollowerController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
+            })
 
         function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();

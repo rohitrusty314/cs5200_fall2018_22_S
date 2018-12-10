@@ -14,7 +14,12 @@
             UserService
                 .findUserById(vm.userId)
                 .then(function (user) {
-                    console.log(user);
+
+                    if(user.role === 'RESIDENT') {
+                        vm.resident = 'RESIDENT';
+                    } else if(user.role === 'CRITIC') {
+                        vm.critic = 'CRITIC';
+                    }
                     vm.user = user;
                     vm.user.dob = new Date(user.dob);
                 })
@@ -23,6 +28,7 @@
 
         vm.updateUser = updateUser;
         vm.goToFollowCritic = goToFollowCritic;
+        vm.goToFollowers = goToFollowers;
 
         function updateUser(user) {
 
@@ -47,6 +53,10 @@
 
         function goToFollowCritic() {
             $location.url("/followCritic/" + vm.userId);
+        }
+
+        function goToFollowers() {
+            $location.url("/followers/" + vm.userId);
         }
     }
 

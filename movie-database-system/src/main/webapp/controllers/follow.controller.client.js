@@ -14,7 +14,6 @@
                 .findUserById(vm.userId)
                 .then(function (user) {
                     vm.followsCritics = user.followsCritics;
-                    console.log(vm.followsCritics);
                 })
 
             UserService
