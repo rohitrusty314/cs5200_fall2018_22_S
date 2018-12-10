@@ -89,6 +89,11 @@ public class UserController {
         return (List<User>) userRepository.findAll();
     }
 
+    @GetMapping("/api/critics")
+    public List<Critic> findAllCritics() {
+        return (List<Critic>) criticRepository.findAll();
+    }
+
     @GetMapping("/api/user/{userId}/watchlists")
     public Set<Watchlist> getAllWatchlistsForResident(@PathVariable("userId") int userId) {
         Resident resident =  residentRepository.findById(userId).get();

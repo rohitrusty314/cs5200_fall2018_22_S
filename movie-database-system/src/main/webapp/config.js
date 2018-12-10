@@ -50,6 +50,11 @@
                 controllerAs: "model",
                 resolve: {loggedin: checkLoggedin}
             })
+            .when("/admin", {
+                templateUrl: "templates/admin.view.client.html",
+                controller: "AdminController",
+                controllerAs: "model"
+            })
 
         function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();
