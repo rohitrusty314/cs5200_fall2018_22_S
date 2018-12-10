@@ -4,6 +4,30 @@
     </h2>
 </nav>
 
+<br/>
+<br/>
+<br/>
+<br/>
+<div>
+    <ul>
+        <h2>Users(username / role / email): </h2>
+
+        <li ng-repeat="user in model.users">
+            <h3> {{user.username}} / {{user.role}} / {{user.email}}
+
+                <div>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="model.deleteUser(user)">
+                        <span class="glyphicon glyphicon-minus"></span> Delete User
+                    </button>
+
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit User
+                    </button>
+                </div>
+            </h3>
+    </ul>
+</div>
+
 <nav class="navbar navbar-light bg-light navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">

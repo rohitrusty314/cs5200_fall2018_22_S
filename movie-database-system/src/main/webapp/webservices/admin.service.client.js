@@ -5,18 +5,23 @@
 
     function adminService($rootScope, $http) {
         var api = {
-            "findAllUsers": findAllUsers()
+            "findAllUsers": findAllUsers,
+            "deleteUser": deleteUser
         };
-
         return api;
 
         function findAllUsers() {
-            return $http.get("/api/movie/" + imdbId + "/ratings/critic")
+            return $http.get("/api/users")
                 .then(function (response) {
-                    console.log(response.data);
                     return response.data;
                 });
+        }
 
+        function deleteUser(user) {
+            return $http.delete("/api/user/" + user.id + "/delete")
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

@@ -32,9 +32,6 @@
         }
 
         function removeMovieFromWatchlist(watchlist, movieId) {
-            console.log("Reached Here");
-            console.log(watchlist);
-            console.log(movieId);
             return $http.put("/api/watchlist/" + watchlist + "/movie/" + movieId + "/delete", {})
                 .then(function (response) {
                     return response.data;

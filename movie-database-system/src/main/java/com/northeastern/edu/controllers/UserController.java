@@ -120,4 +120,9 @@ public class UserController {
         return residentRepository.save(resident);
 
     }
+
+    @DeleteMapping("/api/user/{userId}/delete")
+    public void deleteUserByUserId(@PathVariable("userId") int userId) {
+        userRepository.delete(userRepository.findById(userId).get());
+    }
 }

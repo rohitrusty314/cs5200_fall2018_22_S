@@ -65,17 +65,12 @@
 
 
         function removeMovieFromWatchlist(watchlistId, movieId) {
-
-            console.log(watchlistId)
-            console.log(movieId);
-
             WatchlistService
                 .removeMovieFromWatchlist(watchlistId, movieId)
                 .then(function (wlst) {
                     WatchlistService
                         .findWatchlistsByUserId(vm.userId)
                         .then(function (response) {
-                            console.log(response);
                             vm.watchlists = response;
                         });
                 });
@@ -83,18 +78,12 @@
 
 
         function toggleWatched(watchlistId, movieId, watched) {
-
-            console.log(watchlistId);
-            console.log(movieId);
-            console.log(watched);
-
             WatchlistService
                 .toggleWatched(watchlistId, movieId, watched)
                 .then(function (wlst) {
                     WatchlistService
                         .findWatchlistsByUserId(vm.userId)
                         .then(function (response) {
-                            console.log(response);
                             vm.watchlists = response;
                         });
                 });
@@ -120,7 +109,6 @@
                             WatchlistService
                                 .findWatchlistsByUserId(vm.userId)
                                 .then(function (response) {
-                                    console.log(response);
                                     vm.watchlists = response;
                                 });
                         })
