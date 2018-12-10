@@ -9,6 +9,16 @@
 
     <center> <H2>{{model.detail.Title}}</H2> </center>
     <center><img ng-src={{model.detail.Poster}} /></center>
+
+    <br>
+    <button class="btn badge btn-lg center-block"
+            ng-click="model.addToWatchList(model.detail)">Add to Watchlists</button>
+
+    <br>
+    <div class="alert alert-danger" ng-show="model.alert1">
+        {{model.alert1}}
+    </div>
+
     <span class="col-md-6">
         <center><H3 class="pull-right">Rating : {{model.rating}}</H3></center>
     </span>
@@ -36,8 +46,6 @@
     <center><h4> Overview : {{model.detail.Plot}}</h4></center>
     <center><h4> Director : {{model.detail.Director}}</h4></center>
     <center><h4> Cast : {{model.detail.Actors}}</h4></center>
-
-
 
 
     <textarea ng-model="model.review"

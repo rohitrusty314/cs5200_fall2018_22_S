@@ -3,7 +3,102 @@
 </nav>
 
 <br>
-<H1>This is a User Watchlists page</H1>
+
+<div>
+    <ul>
+
+        <div class="row">
+
+            <div class="col-lg-2">
+                <u> <H1>Watchlists</H1> </u>
+            </div>
+
+            <br>
+            <br>
+            <div class="col-lg-2">
+                <input type="text"
+                        class="form-control"
+                        placeholder="watchlist name ."
+                        ng-model="watchlistName"
+                        name="wName"
+                        id="wName">
+            </div>
+
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-primary btn-sm"
+                        ng-click="model.createWatchlist(watchlistName)">
+                    <span class="glyphicon glyphicon-plus"></span> Create New Watchlist
+                </button>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <li ng-repeat="watchlist in model.watchlists">
+
+            <h2> {{watchlist.name}} </h2>
+
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-primary btn-sm"
+                        ng-click="model.deleteWatchlist(watchlist.id)">
+                    <span class="glyphicon glyphicon-minus"></span> Delete Watchlist
+                </button>
+            </div>
+
+            <div ng-if="model.imdbId">
+                <button type="button" class="btn btn-primary btn-sm"
+                        ng-click="model.addMovieToWatchlist(watchlist.id)">
+                    <span class="glyphicon glyphicon-plus"></span> Add Movie To Watchlist
+                </button>
+            </div>
+
+            <ul>
+
+                <i> <h3> Movies </h3> </i>
+                <br>
+
+                <li ng-repeat="mvl in watchlist.movieWatchlists">
+
+                    <div class="row">
+
+                        <div class="col-lg-2">
+                            <h4> Movie Name :{{mvl.movie.name}} </h4>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-default btn-sm"
+                                    ng-click="model.removeMovieFromWatchlist(watchlist.id, mvl.movie.id)">
+                                <span class="glyphicon glyphicon-minus"></span> Remove Movie from Watchlist
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-lg-2">
+                            <h4 style="color: #5cb85c"> Watched : {{mvl.watched}} </h4>
+                        </div>
+
+
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-default btn-sm"
+                                    ng-click="model.toggleWatched(watchlist.id, mvl.movie.id, mvl.watched)">
+                                <span class="glyphicon glyphicon-refresh"></span> Toggle Watched
+                            </button>
+                        </div>
+                    </div>
+
+                    <br>
+
+                </li>
+            </ul>
+
+            <br>
+            <br>
+        </li>
+    </ul>
+</div>
 
 
 <nav class="navbar navbar-light bg-light navbar-fixed-bottom">

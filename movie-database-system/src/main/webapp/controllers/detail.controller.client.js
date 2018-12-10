@@ -53,7 +53,19 @@
         vm.downvote = downvote;
         vm.endorse = endorse;
         vm.rate = rate;
-        
+        vm.addToWatchList = addToWatchList;
+
+        function addToWatchList(movie) {
+
+            vm.alert1 = "";
+            if($rootScope.userId === undefined) {
+                vm.alert1 = "Please login to add movie to watchlist"
+            } else {
+                $location.url("/watchlists/" + movie.imdbID);
+            }
+
+
+        }
         function rate(rating, movieId) {
             var movieJson = {
 
@@ -130,48 +142,50 @@
 
             if($rootScope.userId === undefined) {
                 vm.alert = "Please login to write the review"
+            } else {
+
+                var movieJson = {
+
+                    "name" :vm.detail.Title,
+                    "releaseDate" : vm.detail.Released,
+                    "genre" : vm.detail.Genre,
+                    "language" : vm.detail.Language,
+                    "imdbId" : imdbId
+
+                };
+
+                console.log(vm.detail);
+                ReviewService
+                    .createMovie(movieJson)
+                    .then(function (movie) {
+
+                        if($rootScope.userRole === 'RESIDENT') {
+
+                            ReviewService
+                                .createResidentReview(review, movie.id)
+                                .then(function (response) {
+                                    ReviewService
+                                        .findResidentReviews(imdbId)
+                                        .then(function (reviews) {
+                                            vm.residentReviews = reviews;
+                                        });
+                                });
+                        } else if($rootScope.userRole === 'CRITIC'){
+
+                            ReviewService
+                                .createCriticReview(review, movie.id)
+                                .then(function (response) {
+                                    ReviewService
+                                        .findCriticReviews(imdbId)
+                                        .then(function (reviews) {
+                                            vm.criticReviews = reviews;
+                                        });
+                                });
+                        }
+                    })
             }
 
-            var movieJson = {
 
-                "name" :vm.detail.Title,
-                "releaseDate" : vm.detail.Released,
-                "genre" : vm.detail.Genre,
-                "language" : vm.detail.Language,
-                "imdbId" : imdbId
-
-            };
-
-            console.log(vm.detail);
-            ReviewService
-                .createMovie(movieJson)
-                .then(function (movie) {
-
-                    if($rootScope.userRole === 'RESIDENT') {
-
-                        ReviewService
-                            .createResidentReview(review, movie.id)
-                            .then(function (response) {
-                                ReviewService
-                                    .findResidentReviews(imdbId)
-                                    .then(function (reviews) {
-                                        vm.residentReviews = reviews;
-                                    });
-                            });
-                    } else if($rootScope.userRole === 'CRITIC'){
-
-                        ReviewService
-                            .createCriticReview(review, movie.id)
-                            .then(function (response) {
-                                ReviewService
-                                    .findCriticReviews(imdbId)
-                                    .then(function (reviews) {
-                                        vm.criticReviews = reviews;
-                                    });
-                            });
-                    }
-
-                })
 
         }
     }

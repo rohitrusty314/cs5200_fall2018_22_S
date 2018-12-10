@@ -45,11 +45,27 @@ public class WatchlistController {
         Watchlist watchlist = watchlistRepository.findById(wId).get();
         Set<MovieWatchlist> movieWatchlists = watchlist.getMovieWatchlists();
 
+
+        boolean contains = false;
+        for(MovieWatchlist mwl: movieWatchlists) {
+            if(mwl.getMovie().getId() == fetchedMovie.getId()) {
+                contains = true;
+                break;
+            }
+        }
+
         MovieWatchlist movieWatchlist = new MovieWatchlist(false);
-        movieWatchlist.setWatchlist(watchlist);
-        movieWatchlist.setMovie(fetchedMovie);
-        movieWatchlists.add(movieWatchlist);
-        return  movieWatchlistRepository.save(movieWatchlist);
+        if(!contains) {
+
+
+            movieWatchlist.setWatchlist(watchlist);
+            movieWatchlist.setMovie(fetchedMovie);
+            movieWatchlists.add(movieWatchlist);
+            return  movieWatchlistRepository.save(movieWatchlist);
+        }
+
+
+        return movieWatchlist;
     }
 
     @PutMapping("/api/watchlist/{wid}/movie/{mid}/delete")

@@ -39,6 +39,11 @@
                 controller: "MovieDetailController",
                 controllerAs: "model"
             })
+            .when("/watchlists/:imdbId", {
+                templateUrl: "templates/watchlists.view.client.html",
+                controller: "WatchlistController",
+                controllerAs: "model"
+            })
 
         function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();
