@@ -77,4 +77,19 @@ public class UserController {
         Resident resident =  residentRepository.findById(userId).get();
         return resident.getWatchlists();
     }
+
+    @GetMapping("/api/resident/{residentId}/following/critics")
+    public Set<Critic> getAllCriticsForResident(@PathVariable("residentId") int residentId) {
+        return residentRepository.findById(residentId).get().getFollowsCritics();
+    }
+
+    @PutMapping("/api/resident/{residentId}/follow/critic/{criticId}")
+    public Resident updateResidentToFollowCritic(@PathVariable("residentId") int residentId,
+                                                 @PathVariable("criticId") int criticId) {
+        Resident resident = residentRepository.findById(residentId).get();
+        Critic critic = criticRepository.findById(criticId).get();
+        resident.followCritic(critic);
+        return residentRepository.save(resident);
+
+    }
 }
