@@ -12,4 +12,10 @@ public interface CriticRepository extends CrudRepository<Critic, Integer> {
     @Modifying
     @Query(value = "DELETE FROM follow WHERE critic_id = :criticId", nativeQuery = true)
     void deleteFollowersByCriticId(@Param("criticId") int criticId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM user WHERE id = :criticId", nativeQuery = true)
+    void deleteByCriticId(@Param("criticId") int criticId);
+
 }
