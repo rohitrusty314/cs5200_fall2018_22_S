@@ -48,6 +48,17 @@ public class UserController {
         return residentRepository.save(resident);
     }
 
+    @PutMapping("/api/user/profile/update")
+    public User updateUserProfile(@RequestBody User updatedUser) {
+        User user = userRepository.findById(updatedUser.getId()).get();
+        user.setFirstName(updatedUser.getFirstName());
+        user.setLastName(updatedUser.getLastName());
+        user.setDob(updatedUser.getDob());
+        user.setEmail(updatedUser.getEmail());
+        user.setPassword(updatedUser.getPassword());
+        return userRepository.save(user);
+    }
+
     @RequestMapping(value="/api/user/loggedin", method = RequestMethod.GET)
     public User checkLoggedIn(HttpSession session){
         return (User) session.getAttribute("session");
