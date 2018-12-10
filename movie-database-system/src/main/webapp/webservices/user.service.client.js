@@ -8,9 +8,31 @@
         var api = {
             "findUserByCredentials": findUserByCredentials,
             "createUser": createUser,
-            "findUserByUsername": findUserByUsername
+            "findUserByUsername": findUserByUsername,
+            "findUserById": findUserById,
+            "updateUser": updateUser
         };
         return api;
+
+
+        function updateUser(user) {
+
+            console.log(user)
+            return $http.put("/api/user/profile/update" , user)
+                .then(function (response) {
+                    console.log(response.data);
+                    return response.data;
+                });
+        }
+
+        function findUserById(userId) {
+            return $http.get("/api/user/" + userId)
+                .then(function (response) {
+                    console.log(response.data);
+                    return response.data;
+                });
+        }
+
 
         function findUserByCredentials(user) {
             console.log("user by cred");

@@ -44,7 +44,7 @@
                 controller: "WatchlistController",
                 controllerAs: "model"
             })
-            .when("/profile", {
+            .when("/profile/:uid", {
                 templateUrl: "templates/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
