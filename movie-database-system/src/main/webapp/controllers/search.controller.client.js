@@ -13,6 +13,7 @@
         vm.watchlists = watchlists;
         vm.searchMovies = searchMovies;
         vm.searchIndividualMovie = searchIndividualMovie;
+        vm.profile = profile;
 
         function searchIndividualMovie(imdbId) {
 
@@ -40,6 +41,10 @@
             //     vm.alert = "User not found";
             // }
             $location.url("/watchlists");
+        }
+
+        function profile() {
+            $location.url("/profile");
         }
 
     }

@@ -24,10 +24,23 @@
 
         function createUser(user) {
             console.log("reached in service create user");
-            return $http.post("/api/resident", user)
-                .then(function (response) {
-                    return response.data;
-                });
+            if(user.role === "CRITIC") {
+                return $http.post("/api/critic", user)
+                    .then(function (response) {
+                        return response.data;
+                    });
+            } else if(user.role === "ADMIN") {
+                return $http.post("/api/admin", user)
+                    .then(function (response) {
+                        return response.data;
+                    });
+            }
+            else {
+                return $http.post("/api/resident", user)
+                    .then(function (response) {
+                        return response.data;
+                    });
+            }
         }
 
         function findUserByUsername(username) {

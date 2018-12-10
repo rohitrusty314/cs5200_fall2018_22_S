@@ -55,6 +55,14 @@
                placeholder="verify password"
                required/>
         <br>
+
+        <label>Role: </label>
+        <input ng-model="user.role" name="userrole" type="radio" value="ADMIN"> Admin
+        <input ng-model="user.role" name="userrole" type="radio" value="CRITIC"> Critic
+        <input ng-model="user.role" name="userrole" type="radio" value="RESIDENT">  Resident
+        <br>
+        <br>
+
     </form>
 
     <a ng-click="model.register(user)" class="btn btn-primary btn-block">

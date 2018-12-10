@@ -42,6 +42,12 @@ public class UserController {
         return criticRepository.save(critic);
     }
 
+    @PostMapping("/api/admin")
+    public Resident createAdmin(@RequestBody Resident resident) {
+        resident.setRole(Role.ADMIN);
+        return residentRepository.save(resident);
+    }
+
     @RequestMapping(value="/api/user/loggedin", method = RequestMethod.GET)
     public User checkLoggedIn(HttpSession session){
         return (User) session.getAttribute("session");

@@ -44,6 +44,12 @@
                 controller: "WatchlistController",
                 controllerAs: "model"
             })
+            .when("/profile", {
+                templateUrl: "templates/profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
+            })
 
         function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();
