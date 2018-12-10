@@ -21,7 +21,7 @@ public class Watchlist {
     @Temporal(TemporalType.DATE)
     private Date updated;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     private Resident resident;
 

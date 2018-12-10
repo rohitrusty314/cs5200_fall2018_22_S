@@ -1,9 +1,7 @@
 package com.northeastern.edu.controllers;
 
 import com.northeastern.edu.models.*;
-import com.northeastern.edu.repositories.CriticRepository;
-import com.northeastern.edu.repositories.ResidentRepository;
-import com.northeastern.edu.repositories.UserRepository;
+import com.northeastern.edu.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +21,15 @@ public class UserController {
 
     @Autowired
     ResidentRepository residentRepository;
+
+    @Autowired
+    CriticRatingRepository criticRatingRepository;
+
+    @Autowired
+    ReviewRepository reviewRepository;
+
+    @Autowired
+    WatchlistRepository watchlistRepository;
 
 
     @GetMapping("/api/user/{id}")
@@ -121,8 +128,35 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/api/user/{userId}/delete")
-    public void deleteUserByUserId(@PathVariable("userId") int userId) {
-        userRepository.delete(userRepository.findById(userId).get());
+    @DeleteMapping("/api/critic/{criticId}/delete")
+    public void deleteCriticByCriticId(@PathVariable("criticId") int criticId) {
+        criticRepository.deleteFollowersByCriticId(criticId);
+        Critic critic = criticRepository.findById(criticId).get();
+
+        for(CriticRating cr : critic.getCriticRatings()) {
+            criticRatingRepository.delete(cr);
+        }
+
+        for(Review review : critic.getReviews()) {
+            reviewRepository.delete(review);
+        }
+
+        criticRepository.delete(critic);
+    }
+
+    @DeleteMapping("/api/resident/{residentId}/delete")
+    public void deleteResidentById(@PathVariable("residentId") int residentId) {
+        residentRepository.deleteFollowingByResidentId(residentId);
+        Resident resident = residentRepository.findById(residentId).get();
+
+        for(Review review : resident.getReviews()) {
+            reviewRepository.delete(review);
+        }
+
+        for(Watchlist watchlist : resident.getWatchlists()) {
+            watchlistRepository.delete(watchlist);
+        }
+
+        residentRepository.delete(resident);
     }
 }
