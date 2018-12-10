@@ -1,0 +1,41 @@
+<nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
+    <h2 class="vg-h1">Movie DB <img src="/templates/logo.png/" width="45px" height="45px"></h2>
+</nav>
+
+<br>
+
+<div class="row">
+
+    <div class="col-lg-6">
+
+        <ul>
+            <i> <h1 style="color: darkolivegreen"> Following Critics :</h1> </i>
+            <br>
+
+            <li ng-repeat="critic in model.followsCritics">
+
+                <h2> Critic Name :{{critic.username}} </h2>
+                <br>
+
+            </li>
+
+        </ul>
+    </div>
+
+
+    <div class="col-lg-6">
+
+        <i><h1 style="color:cornflowerblue"> All Critics</h1></i>
+
+    </div>
+
+</div>
+
+
+<nav class="navbar navbar-light bg-light navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <p class="footer">&copy; Himanshu, Rohit</p>
+        </div>
+    </div>
+</nav>

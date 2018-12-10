@@ -10,9 +10,18 @@
             "createUser": createUser,
             "findUserByUsername": findUserByUsername,
             "findUserById": findUserById,
-            "updateUser": updateUser
+            "updateUser": updateUser,
+            "findAllCritics": findAllCritics
         };
         return api;
+
+        function findUserById(userId) {
+            return $http.get("/api/user/" + userId)
+                .then(function (response) {
+                    console.log(response.data);
+                    return response.data;
+                });
+        }
 
 
         function updateUser(user) {

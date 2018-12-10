@@ -55,6 +55,12 @@
                 controller: "AdminController",
                 controllerAs: "model"
             })
+            .when("/followCritic/:uid", {
+                templateUrl: "templates/followcritic.view.client.html",
+                controller: "FollowController",
+                controllerAs: "model",
+                resolve: {loggedin: checkLoggedin}
+            })
 
         function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
             var deferred = $q.defer();

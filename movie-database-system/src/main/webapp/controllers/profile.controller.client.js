@@ -18,12 +18,11 @@
                     vm.user = user;
                     vm.user.dob = new Date(user.dob);
                 })
-
-
         }
         init();
 
         vm.updateUser = updateUser;
+        vm.goToFollowCritic = goToFollowCritic;
 
         function updateUser(user) {
 
@@ -43,6 +42,11 @@
                         })
                    vm.message = "Profile Updated Successfully";
                 });
+        }
+
+
+        function goToFollowCritic() {
+            $location.url("/followCritic/" + vm.userId);
         }
     }
 
