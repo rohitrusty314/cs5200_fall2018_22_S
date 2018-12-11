@@ -9,39 +9,71 @@
 <br/>
 <br/>
 
-<center>
-
-    <button type="button" class="btn btn-primary btn-lg" ng-click="model.addUser()">
-        <span class="glyphicon glyphicon-plus"></span> Add User
-    </button>
-
-</center>
 
 
-<div class="col-lg-6">
-    <ul>
-        <h2>Users(username / role / email): </h2>
 
-        <li ng-repeat="user in model.users">
-            <h3> {{user.username}} / {{user.role}} / {{user.email}}
+<div class="row">
 
-                <div>
-                    <button type="button" class="btn btn-primary btn-sm" ng-click="model.deleteUser(user)">
-                        <span class="glyphicon glyphicon-minus"></span> Delete User
-                    </button>
+    <div class="col-lg-6">
 
-                    <button type="button" class="btn btn-primary btn-sm" ng-click="model.updateUser(user)">
-                        <span class="glyphicon glyphicon-pencil"></span> Edit User
-                    </button>
-                </div>
-            </h3>
-    </ul>
+
+        <button type="button" class="btn btn-success btn-lg" ng-click="model.addUser()">
+            <span class="glyphicon glyphicon-plus"></span> Add User
+        </button>
+
+
+        <ul>
+            <h2>Users(username / role / email): </h2>
+
+            <li ng-repeat="user in model.users">
+                <h3> {{user.username}} / {{user.role}} / {{user.email}}
+
+                    <div>
+                        <button type="button" class="btn btn-danger btn-sm" ng-click="model.deleteUser(user)">
+                            <span class="glyphicon glyphicon-minus"></span> Delete User
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="model.updateUser(user)">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit User
+                        </button>
+                    </div>
+                </h3>
+        </ul>
+    </div>
+
+
+    <div class="col-lg-6">
+
+        <button type="button" class="btn btn-success btn-lg" ng-click="model.addMovie()">
+            <span class="glyphicon glyphicon-plus"></span> Add Movie
+        </button>
+
+
+        <ul>
+            <h2>Movies: </h2>
+
+            <li ng-repeat="movie in model.movies">
+                <h3> Name : {{movie.name}} /
+                     Release Date : {{movie.releaseDate}} /
+                     Genre : {{movie.genre}} /
+                     Language : {{movie.language}} /
+                     ImdbID : {{movie.imdbId}}
+
+                    <div>
+                        <button type="button" class="btn btn-danger btn-sm" ng-click="model.deleteMovie(movie)">
+                            <span class="glyphicon glyphicon-minus"></span> Delete Movie
+                        </button>
+
+                        <button type="button" class="btn btn-primary btn-sm" ng-click="model.updateMovie(movie)">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit Movie
+                        </button>
+                    </div>
+                </h3>
+        </ul>
+
+    </div>
 </div>
 
-
-<div class="col-lg-6">
-    <h2>Add movie form</h2>
-</div>
 
 <nav class="navbar navbar-light bg-light navbar-fixed-bottom">
     <div class="container-fluid">

@@ -26,6 +26,32 @@ public class MovieController {
 
     }
 
+    @DeleteMapping("/api/movie/{movieId}")
+    public void deleteMovie (@PathVariable("movieId") int movieId) {
+        movieRepository.deleteById(movieId);
+    }
+
+    @PutMapping("/api/movie/{movieId}")
+    public Movie updateMovie (@PathVariable("movieId") int movieId,
+                              @RequestBody Movie movie) {
+
+        Movie m = movieRepository.findById(movieId).get();
+        m.setName(movie.getName());
+        m.setLanguage(movie.getLanguage());
+        m.setGenre(movie.getGenre());
+        m.setImdbId(movie.getImdbId());
+        m.setReleaseDate(movie.getReleaseDate());
+
+        return movieRepository.save(m);
+    }
+
+    @GetMapping("/api/movies")
+    public List<Movie> getMovies() {
+        return (List<Movie>) movieRepository.findAll();
+    }
+
+
+
     @GetMapping("/api/movie/{movieId}")
     public Movie getMovie(@PathVariable("movieId") int movieId) {
         return movieRepository.findById(movieId).get();
