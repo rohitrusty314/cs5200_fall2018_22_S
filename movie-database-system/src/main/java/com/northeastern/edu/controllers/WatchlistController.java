@@ -86,4 +86,9 @@ public class WatchlistController {
     public void deleteWatchlist(@PathVariable("wid") int watchlistId) {
         watchlistRepository.deleteById(watchlistId);
     }
+
+    @GetMapping("/api/watchlists/all")
+    public List<Watchlist> findAllWatchlists() {
+        return (List<Watchlist>) watchlistRepository.findAll();
+    }
 }
