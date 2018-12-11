@@ -5,6 +5,7 @@ import com.northeastern.edu.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class ReviewController {
 
     @Autowired
     MovieRepository movieRepository;
+
+    @Autowired
+    CensorRepository censorRepository;
 
     @Autowired
     CriticRepository criticRepository;
@@ -103,6 +107,44 @@ public class ReviewController {
     @GetMapping("/api/user/{userId}/reviews")
     public List<Review> findReviews(@PathVariable("userId") int userId) {
         return reviewRepository.findAllByUserId(userId);
+    }
+
+    @GetMapping("/api/censored/reviews")
+    public List<Review> findAllCensoredReviews() {
+        List<Review> reviews = (List<Review>) reviewRepository.findAll();
+
+        List<Review> censoredReview = new ArrayList<>();
+        for(Review review : reviews) {
+            if(review.getCensor() != null) {
+                censoredReview.add(review);
+            }
+        }
+
+        return censoredReview;
+    }
+
+    @GetMapping("/api/uncensored/reviews")
+    public List<Review> findAllUncensoredReviews() {
+        List<Review> reviews = (List<Review>) reviewRepository.findAll();
+
+        List<Review> uncensoredReview = new ArrayList<>();
+        for(Review review : reviews) {
+            if(review.getCensor() == null) {
+                uncensoredReview.add(review);
+            }
+        }
+
+        return uncensoredReview;
+    }
+
+    @PutMapping("/api/censor/review/{reviewId}/user/{userId}")
+    public Review censorReview(@PathVariable("reviewId") int reviewId,
+                                           @PathVariable("userId") int userId) {
+        Review review = reviewRepository.findById(reviewId).get();
+        Censor censor = censorRepository.findById(userId).get();
+        review.setCensor(censor);
+        reviewRepository.save(review);
+        return review;
     }
 
 }

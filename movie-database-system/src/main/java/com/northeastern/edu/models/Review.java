@@ -18,6 +18,10 @@ public class Review {
 
     @ManyToOne
     @JsonIgnore
+    private Censor censor;
+
+    @ManyToOne
+    @JsonIgnore
     private Movie movie;
 
     @Temporal(TemporalType.DATE)
@@ -66,6 +70,15 @@ public class Review {
 
     public void setUpdated(Date updated) {
         this.updated = updated;
+    }
+
+    public Censor getCensor() {
+        return censor;
+    }
+
+    public void setCensor(Censor censor) {
+        this.censor = censor;
+        censor.getCensoredReviews().add(this);
     }
 
     public User getUser() {

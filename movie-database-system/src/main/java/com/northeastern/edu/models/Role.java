@@ -4,7 +4,8 @@ public enum Role {
 
     RESIDENT("resident"),
     CRITIC("critic"),
-    ADMIN("admin");
+    ADMIN("admin"),
+    CENSOR("censor");
 
     private String role;
 

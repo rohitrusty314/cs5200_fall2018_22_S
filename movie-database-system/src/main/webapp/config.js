@@ -55,6 +55,11 @@
                 controller: "AdminController",
                 controllerAs: "model"
             })
+            .when("/censor/:uid", {
+                templateUrl: "templates/censor.view.client.html",
+                controller: "CensorController",
+                controllerAs: "model"
+            })
             .when("/followCritic/:uid", {
                 templateUrl: "templates/followcritic.view.client.html",
                 controller: "FollowController",

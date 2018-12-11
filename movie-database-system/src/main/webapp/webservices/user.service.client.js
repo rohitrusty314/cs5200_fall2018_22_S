@@ -84,6 +84,11 @@
                     .then(function (response) {
                         return response.data;
                     });
+            } else if(user.role === "CENSOR") {
+                return $http.post("/api/censor", user)
+                    .then(function (response) {
+                        return response.data;
+                    });
             }
             else {
                 return $http.post("/api/resident", user)

@@ -23,6 +23,9 @@ public class UserController {
     ResidentRepository residentRepository;
 
     @Autowired
+    CensorRepository censorRepository;
+
+    @Autowired
     CriticRatingRepository criticRatingRepository;
 
     @Autowired
@@ -53,6 +56,12 @@ public class UserController {
     public Resident createAdmin(@RequestBody Resident resident) {
         resident.setRole(Role.ADMIN);
         return residentRepository.save(resident);
+    }
+
+    @PostMapping("/api/censor")
+    public Censor createCensor(@RequestBody Censor censor) {
+        censor.setRole(Role.CENSOR);
+        return censorRepository.save(censor);
     }
 
     @PutMapping("/api/user/profile/update")

@@ -10,6 +10,10 @@
             vm.admin = 'ADMIN';
         }
 
+        if($rootScope.userRole === 'CENSOR') {
+            vm.censor = 'CENSOR';
+        }
+
 
         function init() {
         }
@@ -21,6 +25,7 @@
         vm.searchIndividualMovie = searchIndividualMovie;
         vm.profile = profile;
         vm.goToAdmin = goToAdmin;
+        vm.goToCensor = goToCensor;
 
         function searchIndividualMovie(imdbId) {
 
@@ -53,6 +58,10 @@
 
         function goToAdmin() {
             $location.url("/admin/" + $rootScope.userId);
+        }
+
+        function goToCensor() {
+            $location.url("/censor/" + $rootScope.userId);
         }
 
     }
