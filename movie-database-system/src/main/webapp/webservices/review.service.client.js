@@ -15,11 +15,18 @@
             "downVote" : downVote,
             "endorseCritic" : endorseCritic,
             "findRatingForMovie" : findRatingForMovie,
-            "rateMovie" : rateMovie
+            "rateMovie" : rateMovie,
+            "findAllReviewsByUserId" : findAllReviewsByUserId
 
         };
         return api;
 
+        function findAllReviewsByUserId(userId) {
+            return $http.get("/api/user/" + userId + "/reviews")
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function rateMovie(rating, imdbId) {
             return $http.post("/api/user/" + $rootScope.userId + "/movie/"+ imdbId + "/rating", {rating : rating})
