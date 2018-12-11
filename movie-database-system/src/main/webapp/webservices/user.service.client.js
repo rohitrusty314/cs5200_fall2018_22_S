@@ -90,6 +90,12 @@
                         return response.data;
                     });
             }
+            else if(user.role === "CURATOR") {
+                return $http.post("/api/curator", user)
+                    .then(function (response) {
+                        return response.data;
+                    });
+            }
             else {
                 return $http.post("/api/resident", user)
                     .then(function (response) {

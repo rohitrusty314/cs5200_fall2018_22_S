@@ -25,6 +25,10 @@ public class Watchlist {
     @JsonIgnore
     private Resident resident;
 
+    @ManyToMany(mappedBy = "enorsedWatchList")
+    private Set<Curator> endorsements;
+
+
     @OneToMany(mappedBy = "watchlist", fetch = FetchType.EAGER)
     private Set<MovieWatchlist> movieWatchlists = new HashSet<>();
 
@@ -93,6 +97,21 @@ public class Watchlist {
         this.movieWatchlists.add(movieWatchlist);
         if (movieWatchlist.getWatchlist() != this) {
             movieWatchlist.setWatchlist(this);
+        }
+    }
+
+    public Set<Curator> getEndorsements() {
+        return endorsements;
+    }
+
+    public void setEndorsements(Set<Curator> endorsements) {
+        this.endorsements = endorsements;
+    }
+
+    public void endorseByCurator(Curator curator) {
+        this.endorsements.add(curator);
+        if(!curator.getEnorsedWatchList().contains(this)) {
+            curator.getEnorsedWatchList().add(this);
         }
     }
 }

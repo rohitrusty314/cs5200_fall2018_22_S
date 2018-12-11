@@ -60,6 +60,11 @@
                 controller: "CensorController",
                 controllerAs: "model"
             })
+            .when("/curator/:uid", {
+                templateUrl: "templates/curator.view.client.html",
+                controller: "CuratorController",
+                controllerAs: "model"
+            })
             .when("/followCritic/:uid", {
                 templateUrl: "templates/followcritic.view.client.html",
                 controller: "FollowController",

@@ -14,6 +14,10 @@
             vm.censor = 'CENSOR';
         }
 
+        if($rootScope.userRole === 'CURATOR') {
+            vm.curator = 'CURATOR';
+        }
+
 
         function init() {
         }
@@ -26,6 +30,7 @@
         vm.profile = profile;
         vm.goToAdmin = goToAdmin;
         vm.goToCensor = goToCensor;
+        vm.goToCurator = goToCurator;
 
         function searchIndividualMovie(imdbId) {
 
@@ -62,6 +67,10 @@
 
         function goToCensor() {
             $location.url("/censor/" + $rootScope.userId);
+        }
+
+        function goToCurator() {
+            $location.url("/curator/" + $rootScope.userId);
         }
 
     }

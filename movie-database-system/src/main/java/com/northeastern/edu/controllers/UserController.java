@@ -29,6 +29,10 @@ public class UserController {
     @Autowired
     CriticRatingRepository criticRatingRepository;
 
+
+    @Autowired
+    CuratorRepository curatorRepository;
+
     @Autowired
     ReviewRepository reviewRepository;
 
@@ -57,6 +61,12 @@ public class UserController {
     public Resident createAdmin(@RequestBody Resident resident) {
         resident.setRole(Role.ADMIN);
         return residentRepository.save(resident);
+    }
+
+    @PostMapping("/api/curator")
+    public Curator createCurator(@RequestBody Curator curator) {
+        curator.setRole(Role.CURATOR);
+        return curatorRepository.save(curator);
     }
 
     @PostMapping("/api/censor")
