@@ -17,7 +17,7 @@
                 });
 
             CuratorService
-                .findAllEndorsedWatchlists()
+                .findAllEndorsedWatchlists($rootScope.userId)
                 .then(function (response) {
                     vm.endorsedWatchlists = response;
                 });
@@ -41,7 +41,7 @@
                         });
 
                     CuratorService
-                        .findAllEndorsedWatchlists()
+                        .findAllEndorsedWatchlists($rootScope.userId)
                         .then(function (response) {
                             vm.endorsedWatchlists = response;
                         });

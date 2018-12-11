@@ -12,21 +12,21 @@
         return api;
 
         function findAllWatchlists() {
-            return $http.get("/api/uncensred/reviews")
+            return $http.get("/api/watchlists/all")
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        function findAllEndorsedWatchlists() {
-            return $http.get("/api/censoed/reviews")
+        function findAllEndorsedWatchlists(userId) {
+            return $http.get("/api/curator/" + userId + "/endorsed/watchlists/all")
                 .then(function (response) {
                     return response.data;
                 });
         }
 
         function endorseWatchlist(watchlistId, userId) {
-            return $http.put("/api/censor/reiew/" + review.id + "/user/" + userId)
+            return $http.put("/api/curator/" + userId + "/endorse/watchlist/" + watchlistId)
                 .then(function (response) {
                     return response.data;
                 });

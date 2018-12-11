@@ -12,27 +12,60 @@
 
 <div class="col-lg-6">
     <ul>
-        <h2>Endorsed Watchlist: </h2>
+        <h2>Endorsed Watchlists: </h2>
 
 
         <li ng-repeat="endorsedWl in model.endorsedWatchlists">
-            <h3> {{endorsedWl}}</h3>
+            <h3> {{endorsedWl.name}}</h3>
+
+
+            <ul>
+
+                <i> <h3> Movies </h3> </i>
+                <br>
+
+                <li ng-repeat="endorsedMvl in endorsedWl.movieWatchlists">
+                    <div class="row">
+                        <h4> Movie Name :{{endorsedMvl.movie.name}} </h4>
+                        <h4 style="color: #5cb85c"> Watched : {{endorsedMvl.watched}} </h4>
+                    </div>
+                    <br>
+                </li>
+            </ul>
+        </li>
+
+
     </ul>
 </div>
 
 <div class="col-lg-6">
     <ul>
-        <h2>All Watchlist: </h2>
+        <h2>All Watchlists: </h2>
 
         <li ng-repeat="wl in model.watchlists">
-            <h3> {{wl}}
+            <h3> {{wl.name}}
 
-                <div>
+                <div class="col-lg-8 pull-right">
                     <button type="button" class="btn btn-primary btn-sm" ng-click="model.endorseWatchlist(wl)">
-                        <span class="glyphicon glyphicon-minus"></span> Endorse Watchlist
+                        <span class="glyphicon glyphicon-plus"></span> Endorse Watchlist
                     </button>
                 </div>
             </h3>
+
+            <ul>
+
+                <i> <h3> Movies </h3> </i>
+                <br>
+
+                <li ng-repeat="mvl in wl.movieWatchlists">
+                    <div class="row">
+                        <h4> Movie Name :{{mvl.movie.name}} </h4>
+                        <h4 style="color: #5cb85c"> Watched : {{mvl.watched}} </h4>
+                    </div>
+                    <br>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 
