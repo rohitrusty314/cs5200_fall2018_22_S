@@ -19,6 +19,23 @@
 
 </div>
 
+<div class="row">
+
+    <center><i><h1 style="color:rosybrown"> All Reviews</h1></i></center>
+
+    <br>
+
+    <li ng-repeat="review in model.reviews">
+
+        <center> <h2> Review :{{review.review}}</h2> </center>
+        <center> <h2> Created :{{review.created}}</h2> </center>
+        <br>
+        <br>
+
+    </li>
+
+</div>
+
 
 <nav class="navbar navbar-light bg-light navbar-fixed-bottom">
     <div class="container-fluid">

@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("FollowController", followController);
 
-    function followController($rootScope, $scope, $location, $routeParams,  UserService) {
+    function followController($rootScope, $scope, $location, $routeParams,  UserService, ReviewService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -20,6 +20,12 @@
                 .findAllCritics()
                 .then(function (critics) {
                     vm.allCritics = critics;
+                })
+
+            ReviewService
+                .findAllReviewsByUserId(vm.userId)
+                .then(function (reviews) {
+                    vm.reviews = reviews;
                 })
         }
         init();

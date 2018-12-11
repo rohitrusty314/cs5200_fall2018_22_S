@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class ReviewController {
@@ -98,4 +99,10 @@ public class ReviewController {
         residentReview.setEndorsedByCritic(true);
         return residentReviewRepository.save(residentReview);
     }
+
+    @GetMapping("/api/user/{userId}/reviews")
+    public List<Review> findReviews(@PathVariable("userId") int userId) {
+        return reviewRepository.findAllByUserId(userId);
+    }
+
 }
