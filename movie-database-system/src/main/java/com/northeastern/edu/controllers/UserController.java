@@ -171,7 +171,7 @@ public class UserController {
     }
 
     @GetMapping("/api/curator/{curatorId}/endorsed/watchlists/all")
-    public Set<Watchlist> findAllWatchlistsEndorsedByCurator(@PathVariable("curatorId:") int curatorId) {
+    public Set<Watchlist> findAllWatchlistsEndorsedByCurator(@PathVariable("curatorId") int curatorId) {
         return curatorRepository.findById(curatorId).get().getEnorsedWatchList();
     }
 

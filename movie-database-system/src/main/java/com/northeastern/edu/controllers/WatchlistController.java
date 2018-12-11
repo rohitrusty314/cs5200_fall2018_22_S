@@ -91,4 +91,9 @@ public class WatchlistController {
     public List<Watchlist> findAllWatchlists() {
         return (List<Watchlist>) watchlistRepository.findAll();
     }
+
+    @GetMapping("/api/watchlists/sort/endorsed")
+    public List<Watchlist> findMostEndorsedWatchlists(@RequestParam("limit") int limit) {
+        return watchlistRepository.findWatchlistsWithMostEndorsements(limit);
+    }
 }
