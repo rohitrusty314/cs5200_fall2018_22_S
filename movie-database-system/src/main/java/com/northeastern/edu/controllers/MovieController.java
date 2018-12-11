@@ -28,6 +28,9 @@ public class MovieController {
 
     @DeleteMapping("/api/movie/{movieId}")
     public void deleteMovie (@PathVariable("movieId") int movieId) {
+        movieRepository.deleteMovieFromWatchlist(movieId);
+        movieRepository.deleteMovieRatings(movieId);
+        movieRepository.deleteMovieReviews(movieId);
         movieRepository.deleteById(movieId);
     }
 
