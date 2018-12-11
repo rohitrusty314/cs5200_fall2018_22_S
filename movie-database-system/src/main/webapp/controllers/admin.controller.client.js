@@ -56,8 +56,10 @@
                 .deleteUser(user)
                 .then(function (response) {
                     AdminService
-                        .findAllUsers()
+                        .findAllUsers(vm.userId)
                         .then(function (response) {
+                            console.log("ress");
+                            console.log(response)
                             vm.users = response;
                         });
                 });
