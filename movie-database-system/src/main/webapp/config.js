@@ -74,18 +74,23 @@
             })
 
         function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
-            var deferred = $q.defer();
-            $http.get('/api/user/loggedin')
-                .success(function(user) {
-                    $rootScope.errorMessage = null;
-                    if (user !== '') {
-                        deferred.resolve();
-                    } else {
-                        deferred.reject();
-                        $location.url('/login');
-                    }
-                });
-            return deferred.promise;
+            // var deferred = $q.defer();
+            // $http.get('/api/user/loggedin')
+            //     .success(function(user) {
+            //         $rootScope.errorMessage = null;
+            //         if (user !== '') {
+            //             deferred.resolve();
+            //         } else {
+            //             deferred.reject();
+            //             $location.url('/login');
+            //         }
+            //     });
+            // return deferred.promise;
+
+
+            if(!$rootScope.userId) {
+                $location.url('/login');
+            }
         };
     }
 })();
