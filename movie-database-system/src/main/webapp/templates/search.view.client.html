@@ -28,6 +28,7 @@
     <br>
 
 
+    <center> <h1> Search Movies | Create WatchLists | Review | Rate | More . . </h1> </center>
     <button class="btn btn-info btn-lg center-block pull-right"
             ng-click="model.watchlists(user)">Go to your Watchlists</button>
     <br>
@@ -70,7 +71,7 @@
                             <img ng-src={{movie.Poster}}
                                  ng-click="model.searchIndividualMovie(movie.imdbID)"/>
                         </div>
-                        <div class="col-lg-3 pull-left">
+                        <div class="col-lg-5 pull-right">
                             <h3 ng-click="model.searchIndividualMovie(movie.imdbID)">{{movie.Title}} ({{movie.Year}})</h3>
                         </div>
                     </div>
