@@ -18,7 +18,7 @@
         }
 
         function deleteUser(user) {
-            return $http.delete("/api/critic/" + user.id + "/delete")
+            return $http.delete("/api/" + user.role.toLowerCase() + "/" + user.id + "/delete")
                 .then(function (response) {
                     return response.data;
                 });

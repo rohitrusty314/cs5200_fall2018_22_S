@@ -12,4 +12,9 @@ public interface ResidentRepository extends CrudRepository<Resident, Integer> {
     @Modifying
     @Query(value = "DELETE FROM follow WHERE resident_id = :residentId", nativeQuery = true)
     void deleteFollowingByResidentId(@Param("residentId") int residentId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM user WHERE id = :residentId", nativeQuery = true)
+    void deleteUserByResidentId(@Param("residentId") int residentId);
 }

@@ -131,32 +131,16 @@ public class UserController {
     @DeleteMapping("/api/critic/{criticId}/delete")
     public void deleteCriticByCriticId(@PathVariable("criticId") int criticId) {
         criticRepository.deleteFollowersByCriticId(criticId);
-        Critic critic = criticRepository.findById(criticId).get();
-
-        for(CriticRating cr : critic.getCriticRatings()) {
-            criticRatingRepository.delete(cr);
-        }
-
-        for(Review review : critic.getReviews()) {
-            reviewRepository.delete(review);
-        }
-
-        criticRepository.delete(critic);
+        criticRatingRepository.deleteByCriticId(criticId);
+        reviewRepository.deleteByUserId(criticId);
+        criticRepository.deleteByCriticId(criticId);
     }
 
     @DeleteMapping("/api/resident/{residentId}/delete")
     public void deleteResidentById(@PathVariable("residentId") int residentId) {
         residentRepository.deleteFollowingByResidentId(residentId);
-        Resident resident = residentRepository.findById(residentId).get();
-
-        for(Review review : resident.getReviews()) {
-            reviewRepository.delete(review);
-        }
-
-        for(Watchlist watchlist : resident.getWatchlists()) {
-            watchlistRepository.delete(watchlist);
-        }
-
-        residentRepository.delete(resident);
+        reviewRepository.deleteByUserId(residentId);
+        watchlistRepository.deleteByResidentId(residentId);
+        residentRepository.deleteUserByResidentId(residentId);
     }
 }
