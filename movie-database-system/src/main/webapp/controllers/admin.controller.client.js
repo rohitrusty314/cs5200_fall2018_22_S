@@ -11,7 +11,7 @@
 
         function init() {
             AdminService
-                .findAllUsers()
+                .findAllUsers(userId)
                 .then(function (response) {
                     vm.users = response;
                 });

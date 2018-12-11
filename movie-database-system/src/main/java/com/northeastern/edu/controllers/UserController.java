@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -103,6 +104,12 @@ public class UserController {
     @GetMapping("/api/users")
     public List<User> findAllUsers() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @GetMapping("/api/users/except/admin/{adminId}")
+    public List<User> findAllOtherUsers(@PathVariable("adminId") int adminId) {
+        List<User> users = (List<User>) userRepository.findAll();
+        return users.stream().filter(user -> user.getId() != adminId).collect(Collectors.toList());
     }
 
     @GetMapping("/api/critics")

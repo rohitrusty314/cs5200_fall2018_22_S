@@ -10,8 +10,8 @@
         };
         return api;
 
-        function findAllUsers() {
-            return $http.get("/api/users")
+        function findAllUsers(userId) {
+            return $http.get("/api/users/except/admin/" + userId)
                 .then(function (response) {
                     return response.data;
                 });
