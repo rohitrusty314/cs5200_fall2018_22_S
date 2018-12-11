@@ -1,5 +1,11 @@
 <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
-    <h2 class="vg-h1">Movie DB <img src="/templates/logo.png/" width="45px" height="45px"></h2>
+    <h2 class="vg-h1">Movie DB <img src="/templates/logo.png/" width="45px" height="45px">
+        <button ng-if="model.userId" ng-click="model.logout()"
+                class="btn btn-success btn-lg center-block pull-right">Logout</button>
+        <button ng-if="!model.userId" ng-click="model.login()"
+                class="btn btn-success btn-lg center-block pull-right">Login</button>
+    </h2>
+
 </nav>
 
 <br>

@@ -3,9 +3,10 @@
         .module("MovieDBApp")
         .controller("SearchController", searchController);
 
-    function searchController($rootScope, $scope, $location, $http) {
+    function searchController($rootScope, $scope, $location, $http, WatchlistService) {
         var vm = this;
 
+        vm.userId = $rootScope.userId;
         if($rootScope.userRole === 'ADMIN') {
             vm.admin = 'ADMIN';
         }
@@ -20,6 +21,14 @@
 
 
         function init() {
+
+            WatchlistService.topEndorsed()
+                .then(function (response) {
+
+                    vm.topEndorsedWL = response;
+                })
+
+
         }
 
         init();
@@ -31,7 +40,14 @@
         vm.goToAdmin = goToAdmin;
         vm.goToCensor = goToCensor;
         vm.goToCurator = goToCurator;
+        vm.logout = logout;
+        vm.login = login;
 
+        function login() {
+
+            $location.url("/login");
+
+        }
         function searchIndividualMovie(imdbId) {
 
             $location.url("/detail/" + imdbId);
@@ -71,6 +87,16 @@
 
         function goToCurator() {
             $location.url("/curator/" + $rootScope.userId);
+        }
+
+        function logout() {
+
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/login')
         }
 
     }

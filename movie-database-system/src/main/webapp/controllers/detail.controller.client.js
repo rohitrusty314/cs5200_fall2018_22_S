@@ -54,6 +54,14 @@
         vm.endorse = endorse;
         vm.rate = rate;
         vm.addToWatchList = addToWatchList;
+        vm.logout = logout;
+        vm.login = login;
+
+        function login() {
+
+            $location.url("/login");
+
+        }
 
         function addToWatchList(movie) {
 
@@ -184,9 +192,15 @@
                         }
                     })
             }
+        }
 
-
-
+        function logout() {
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
     }
 })();

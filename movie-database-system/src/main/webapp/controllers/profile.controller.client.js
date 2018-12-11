@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("ProfileController", profileController);
 
-    function profileController($rootScope, $scope, $location, $routeParams,  UserService) {
+    function profileController($rootScope, $scope, $http, $location, $routeParams,  UserService) {
         var vm = this;
 
         if($rootScope.userRole === 'ADMIN') {
@@ -35,6 +35,7 @@
         vm.cancelUpdate = cancelUpdate;
         vm.goToFollowCritic = goToFollowCritic;
         vm.goToFollowers = goToFollowers;
+        vm.logout = logout;
 
 
         function cancelUpdate() {
@@ -89,6 +90,16 @@
 
         function goToFollowers() {
             $location.url("/followers/" + vm.userId);
+        }
+
+        function logout() {
+
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
     }
 

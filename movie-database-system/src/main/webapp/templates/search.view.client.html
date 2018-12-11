@@ -10,62 +10,105 @@
              <button ng-if ="model.curator" class="btn btn-success btn-lg center-block pull-right"
                 ng-click="model.goToCurator()">Endorse Watchlists</button>
 
-            <button class="btn btn-info btn-lg center-block pull-right" ng-click="model.profile()">Profile</button>
+            <button ng-if="model.userId" ng-click="model.logout()"
+                    class="btn btn-success btn-lg center-block pull-right">Logout</button>
+
+            <button ng-if="!model.userId" ng-click="model.login()"
+                class="btn btn-success btn-lg center-block pull-right">Login</button>
+
+            <button class="btn btn-primary btn-lg center-block pull-right" ng-click="model.profile()">Profile</button>
     </h2>
 </nav>
 
-<br>
-<br>
-<br>
-<button class="btn btn-info btn-lg center-block pull-right"
-        ng-click="model.watchlists(user)">Go to your Watchlists</button>
-<br>
-<br>
-<br>
-<br>
 
-<div>
-
-    <input class = "form-control glyphicon glyphicon-search"
-           ng-model="movie"
-           name="search"
-           id="search"
-           type="text"
-           placeholder="Search. . ."
-           required>
+<div class="backgroundImg">
 
     <br>
-        <a class="btn btn-primary btn-block"
-            ng-click="model.searchMovies(movie)">Search</a>
-
-</div>
+    <br>
+    <br>
 
 
-<br>
+    <button class="btn btn-info btn-lg center-block pull-right"
+            ng-click="model.watchlists(user)">Go to your Watchlists</button>
+    <br>
+    <br>
+    <br>
+    <br>
 
-<br>
+    <div>
 
+        <input class = "form-control glyphicon glyphicon-search"
+               ng-model="movie"
+               name="search"
+               id="search"
+               type="text"
+               placeholder="Search anything movie. . ."
+               required>
 
-<div ng-if="model.movies.length">
-    <ul>
-        <u> <H1>Movies</H1> </u>
         <br>
-        <br>
-        <li ng-repeat="movie in model.movies">
-            <div class="row">
-                <div class="col-lg-3">
-                    <img ng-src={{movie.Poster}}
-                         ng-click="model.searchIndividualMovie(movie.imdbID)"/>
-                </div>
-                <div class="col-lg-3 pull-left">
-                    <h3 ng-click="model.searchIndividualMovie(movie.imdbID)">{{movie.Title}} ({{movie.Year}})</h3>
-                </div>
-            </div>
+            <a class="btn btn-info btn-lg btn-block"
+                ng-click="model.searchMovies(movie)">Search</a>
 
-            <br>
-            <br>
-        </li>
-    </ul>
+    </div>
+
+
+    <br>
+
+    <br>
+
+    <div class="row">
+
+
+        <div ng-if="model.movies.length" class="col-lg-6">
+            <ul>
+                <u> <H1>Movies</H1> </u>
+                <br>
+                <br>
+                <li ng-repeat="movie in model.movies">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img ng-src={{movie.Poster}}
+                                 ng-click="model.searchIndividualMovie(movie.imdbID)"/>
+                        </div>
+                        <div class="col-lg-3 pull-left">
+                            <h3 ng-click="model.searchIndividualMovie(movie.imdbID)">{{movie.Title}} ({{movie.Year}})</h3>
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
+                </li>
+            </ul>
+        </div>
+
+
+        <div ng-if="model.topEndorsedWL" class="col-lg-6">
+
+            <ul>
+                <h2>Top Endorsed Watchlists: </h2>
+
+
+                <li ng-repeat="endorsedWl in model.topEndorsedWL">
+                    <h3> {{endorsedWl.name}}</h3>
+                    <ul>
+                        <i> <h3> Movies </h3> </i>
+                        <br>
+
+                        <li ng-repeat="endorsedMvl in endorsedWl.movieWatchlists">
+                            <div class="row">
+                                <h4> Movie Name :{{endorsedMvl.movie.name}} </h4>
+                            </div>
+                            <br>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+
 </div>
 
 

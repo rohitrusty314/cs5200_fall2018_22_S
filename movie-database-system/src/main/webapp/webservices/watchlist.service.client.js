@@ -10,11 +10,19 @@
             "createWatchlist" :createWatchlist,
             "removeMovieFromWatchlist" : removeMovieFromWatchlist,
             "toggleWatched" : toggleWatched,
-            "deleteWatchlist" : deleteWatchlist
+            "deleteWatchlist" : deleteWatchlist,
+            "topEndorsed" : topEndorsed
 
         }
 
         return api;
+
+        function topEndorsed() {
+            return $http.get("/api/watchlists/sort/endorsed?limit=2")
+                .then(function (response) {
+                    return response.data;
+                });
+        }
         
         function deleteWatchlist(watchlistId) {
             return $http.delete("/api/watchlist/" + watchlistId + "/delete")

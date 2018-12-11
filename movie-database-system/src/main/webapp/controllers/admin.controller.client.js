@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("AdminController", adminController);
 
-    function adminController($rootScope, $scope, $location,$routeParams,  AdminService) {
+    function adminController($rootScope, $scope, $http, $location,$routeParams,  AdminService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -32,6 +32,7 @@
         vm.updateUser = updateUser;
         vm.updateMovie = updateMovie;
         vm.deleteMovie = deleteMovie;
+        vm.logout = logout;
 
         function addMovie() {
             $location.url("/movie");
@@ -72,6 +73,16 @@
                             vm.movies = response;
                         });
                 });
+        }
+
+        function logout() {
+
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
     }
 

@@ -9,7 +9,11 @@ body {
     padding-bottom: 40px;
     font-family: 'Oswald', sans-serif;
     background-color: whitesmoke;
+}
 
+.backgroundImg{
+    background-image: url("../templates/background.jpeg");
+    
 }
 
 .vg-container {

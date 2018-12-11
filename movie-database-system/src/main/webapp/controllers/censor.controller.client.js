@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("CensorController", censorController);
 
-    function censorController($rootScope, $scope, $location,$routeParams,  CensorService) {
+    function censorController($rootScope, $scope, $http,  $location,$routeParams,  CensorService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -27,6 +27,7 @@
         init();
 
         vm.flagReview = flagReview;
+        vm.logout = logout;
 
         function flagReview(review) {
 
@@ -46,6 +47,16 @@
                             vm.uncensoredReviews = response;
                         });
                 });
+        }
+
+        function logout() {
+
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
     }
 

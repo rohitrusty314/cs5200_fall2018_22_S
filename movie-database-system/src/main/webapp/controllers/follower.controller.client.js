@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("FollowerController", followerController);
 
-    function followerController($rootScope, $scope, $location, $routeParams,  ReviewService, UserService) {
+    function followerController($rootScope, $scope, $http, $location, $routeParams,  ReviewService, UserService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -23,6 +23,17 @@
                 })
         }
         init();
+
+        vm.logout = logout;
+
+        function logout() {
+
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
+        }
 
     }
 

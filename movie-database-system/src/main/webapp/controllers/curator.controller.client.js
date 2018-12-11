@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("CuratorController", curatorController);
 
-    function curatorController($rootScope, $scope, $location,$routeParams, CuratorService) {
+    function curatorController($rootScope, $scope, $http, $location,$routeParams, CuratorService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -27,6 +27,7 @@
         init();
 
         vm.endorseWatchlist = endorseWatchlist;
+        vm.logout = logout;
 
         function endorseWatchlist(watchlist) {
 
@@ -46,6 +47,16 @@
                             vm.endorsedWatchlists = response;
                         });
                 });
+        }
+
+        function logout() {
+
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
     }
 

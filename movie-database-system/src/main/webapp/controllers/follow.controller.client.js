@@ -3,7 +3,7 @@
         .module("MovieDBApp")
         .controller("FollowController", followController);
 
-    function followController($rootScope, $scope, $location, $routeParams,  UserService, ReviewService) {
+    function followController($rootScope, $scope, $http, $location, $routeParams,  UserService, ReviewService) {
         var vm = this;
 
         var userId = $routeParams['uid'];
@@ -31,6 +31,7 @@
         init();
 
         vm.followCritic = followCritic;
+        vm.logout = logout;
 
         function followCritic(criticId) {
 
@@ -46,6 +47,15 @@
                             vm.followsCritics = user.followsCritics;
                         })
                 });
+        }
+
+        function logout() {
+
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
 
     }

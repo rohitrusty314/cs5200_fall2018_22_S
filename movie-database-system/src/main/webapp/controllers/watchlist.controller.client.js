@@ -33,6 +33,7 @@
         vm.removeMovieFromWatchlist = removeMovieFromWatchlist;
         vm.toggleWatched = toggleWatched;
         vm.deleteWatchlist = deleteWatchlist;
+        vm.logout = logout;
 
         function deleteWatchlist(watchlistId) {
 
@@ -118,6 +119,16 @@
         function watchlists(user) {
             console.log("");
 
+        }
+
+        function logout() {
+
+            vm = undefined;
+            $rootScope.userId = undefined;
+            $rootScope.userRole = undefined;
+            // redirect logged in user to login page
+            $http.get('/api/user/loggedout');
+            $location.url('/search')
         }
     }
 })();

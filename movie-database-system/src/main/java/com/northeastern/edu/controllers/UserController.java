@@ -91,6 +91,11 @@ public class UserController {
         return (User) session.getAttribute("session");
     }
 
+    @RequestMapping(value="/api/user/loggedout", method = RequestMethod.GET)
+    public void checkLoggedOut(HttpSession session){
+        session.invalidate();
+    }
+
     @PostMapping("/api/login")
     public User findUserByCredentials(HttpSession session, @RequestBody User user) {
 
