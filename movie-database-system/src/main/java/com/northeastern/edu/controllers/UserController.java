@@ -174,5 +174,13 @@ public class UserController {
     public Set<Watchlist> findAllWatchlistsEndorsedByCurator(@PathVariable("curatorId:") int curatorId) {
         return curatorRepository.findById(curatorId).get().getEnorsedWatchList();
     }
-    
+
+
+    @PutMapping("/api/curator/{curatorId}/endorse/watchlist/{watchlistId}")
+    public Curator endorseWatchlistByCurator(@PathVariable("curatorId") int curatorId,
+                                             @PathVariable("watchlistId") int watchlistId) {
+        Curator curator = curatorRepository.findById(curatorId).get();
+        curator.endorseWatchlist(watchlistRepository.findById(watchlistId).get());
+        return curatorRepository.save(curator);
+    }
 }
